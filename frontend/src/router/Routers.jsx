@@ -7,6 +7,8 @@ import TShirtDetails from '../pages/TShirtDetails';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import SearchResultList from '../pages/SearchResultList';
+import About from '../pages/About'
+import Contact from '../pages/Contact';
 
 export const Routers = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ export const Routers = createBrowserRouter([
       {
         path: '/register',
         element: <Register />,
+      },
+      {
+        path: '/about',
+        element: <About />,
+      },
+      {
+        path: '/contact',
+        element: <Contact />,
       },
     ],
   },

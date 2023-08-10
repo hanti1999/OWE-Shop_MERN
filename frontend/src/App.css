@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Island+Moments&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Cherry+Bomb+One&family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 :root {
   --primary-color: #ff7e01;
@@ -8,6 +9,7 @@
   --text-color: #6e7074;
   --font-name: "Montserrat", sans-serif;
   --subtitle-font-name: "Island Moments", cursive;
+  --logo-font: 'Cherry Bomb One', sans-serif;
 }
 
 * {

@@ -9,6 +9,6 @@
 # Technology
 
 - language: html, css, js
-- framewrork/library: ReactJs, NodeJs, TailwindCss, Bootstrap
+- framewrork/library: ReactJs, NodeJs, TailwindCss, Bootstrap 5, Redux
 - Database: MongoDB
 - Other: Vite, JWT

@@ -1,12 +1,11 @@
 import './App.css'
-import { Outlet } from 'react-router-dom'
+import Layout from './components/Layout/Layout'
 
 function App() {
 
   return (
     <>
-      <h2 className='text-xl'>Hello Tailwind</h2>
-      <Outlet />
+      <Layout />
     </>
   )
 }
