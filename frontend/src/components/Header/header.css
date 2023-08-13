@@ -2,6 +2,11 @@
     font-family: var(--logo-font);
 }
 
+header i {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
 .nav__item a {
     color: var(--heading-color);
     font-weight: 500;
@@ -19,4 +24,26 @@
 .mobile__menu {
     color: var(--heading-color);
     display: none;
+}
+
+.sticky__header {
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    left: 0;
+    box-shadow: 3px 3px 8px -3px #ddd;
+    z-index: 999;
+}
+
+#form__search {
+    display: none;
+}
+
+#form__search.open-search {
+    display: flex;
+    gap: 12px;
+    background-color: #fff;
 }

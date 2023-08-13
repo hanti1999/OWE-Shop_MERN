@@ -23,7 +23,7 @@ body {
 }
 
 section {
-  padding: 50px 0px;
+  padding: 25px 0px;
 }
 
 h1,
@@ -31,7 +31,10 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p,
+b,
+span {
   color: var(--heading-color);
 }
 
@@ -81,7 +84,6 @@ ul {
   width: max-content;
   padding: 0px 0.5rem;
   padding-right: 1rem;
-
   border-radius: 50px;
   font-weight: 500;
   font-size: 1.7rem;

@@ -9,6 +9,7 @@ import Register from '../pages/Register';
 import SearchResultList from '../pages/SearchResultList';
 import About from '../pages/About'
 import Contact from '../pages/Contact';
+import Support from '../pages/Support';
 
 export const Routers = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const Routers = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact />,
+      },
+      {
+        path: '/support',
+        element: <Support />,
       },
     ],
   },
