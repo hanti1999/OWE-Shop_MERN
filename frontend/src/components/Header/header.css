@@ -23,7 +23,7 @@ header i {
 
 .mobile__menu {
     color: var(--heading-color);
-    display: none;
+    /* display: none; */
 }
 
 .sticky__header {
@@ -35,15 +35,28 @@ header i {
     top: 0;
     left: 0;
     box-shadow: 3px 3px 8px -3px #ddd;
-    z-index: 999;
+    z-index: 99;
 }
 
 #form__search {
     display: none;
+    z-index: 100;
 }
 
 #form__search.open-search {
     display: flex;
     gap: 12px;
     background-color: #fff;
+}
+
+#form__search i:hover {
+    color: var(--primary-color);
+}
+
+.menu__right button {
+    cursor: default;
+}
+
+.menu__right button i:hover {
+    color: var(--primary-color);
 }

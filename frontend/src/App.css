@@ -89,3 +89,7 @@ ul {
   font-size: 1.7rem;
   color: var(--heading-color);
 }
+
+.container {
+  @apply mx-auto xl:max-w-[1200px];
+}

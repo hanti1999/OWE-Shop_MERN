@@ -8,11 +8,11 @@ const nav__links = [
     display: 'TRANG CHỦ'
   },
   {
-    path: '/t-shirt',
+    path: '/shop',
     display: 'NAM'
   },
   {
-    path: '/t-shirt',
+    path: '/shop',
     display: 'NỮ'
   },
   {
@@ -23,30 +23,34 @@ const nav__links = [
 ]
 
 const Header = () => {
+  // Open search bar ======
   const openSearchRef = useRef();
   const searchToggle = () => {
     openSearchRef.current.classList.toggle('open-search');
   }
+  // ====== End open search bar
 
   return (
     <header className='header w-full h-20 leading-[80px]'>
-      <div className='container mx-auto xl:max-w-[1200px] relative'>
-        {/* Search bar >>>>>> */}
+      <div className='container relative'>
+        {/* Search bar ====== */}
         <form ref={openSearchRef} id='form__search' className='absolute left-0 right-0'>
-          <input type="text" name='q' className='w-full px-2 outline-none' placeholder='Nhập từ khóa/mã sản phẩm cầm tìm' />
-          <button type='submit'><i className="ri-search-line"></i></button>
-          <div className=' cursor-pointer' onClick={searchToggle}><i className="ri-close-line"></i></div>
+          <input type="text" name='q' className='w-full px-2 outline-none' placeholder='Nhập từ khóa/mã cầm tìm' />
+          <button type='submit'>
+            <i className="ri-search-line"></i>
+          </button>
+          <div className='cursor-pointer' onClick={searchToggle}><i className="ri-close-line"></i></div>
         </form>
-        {/* <<<<<< End search bar */}
+        {/* ====== End search bar */}
         <div className="flex items-center justify-between">
-          {/* Logo >>>>>> */}
+          {/* Logo ====== */}
           <Link to='/' className="logo">
             <h1 className='text-6xl'>OWE</h1>
           </Link>
-          {/* <<<<<< End logo */}
+          {/* ====== End logo */}
           
-          {/* Menu >>>>>> */}
-            <ul className="flex items-center gap-12 mb-0 pl-0">
+          {/* Menu ====== */}
+            <ul className="hidden md:flex items-center gap-12 mb-0 pl-0">
               {nav__links.map((item, index) => (
                 <li className='nav__item' key={index}>
                   <NavLink 
@@ -57,11 +61,11 @@ const Header = () => {
                 </li>
               ))}                
             </ul>
-          {/* <<<<<< Menu end */}
-          <div className="flex items-center gap-6">
+          {/* ====== Menu end */}
+          <div className="menu__right flex items-center gap-6">
             <div className="flex items-center gap-6">
               <button onClick={searchToggle}>
-                <i className="ri-search-line"></i>
+                <i className="ri-search-line cursor-pointer"></i>
               </button>
               <button>
                 <Link to='/login'><i className="ri-user-3-line"></i></Link>
@@ -73,11 +77,11 @@ const Header = () => {
                 <Link to='/'><i className="ri-shopping-cart-2-line"></i></Link>
               </button>
             </div>
-            {/* Mobile menu >>>>>> */}
-            <span className='mobile__menu text-[1.3rem]'>
+            {/* Mobile menu ====== */}
+            <span className='mobile__menu md:hidden'>
               <i className="ri-menu-line"></i>
             </span>
-            {/* <<<<<< End mobile menu */}
+            {/* ====== End mobile menu */}
           </div>
         </div>
       </div>
