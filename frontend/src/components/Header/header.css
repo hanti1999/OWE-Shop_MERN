@@ -49,8 +49,9 @@ header i {
     background-color: #fff;
 }
 
+.nav__item a:hover,
 #form__search i:hover {
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .menu__right button {
@@ -58,5 +59,5 @@ header i {
 }
 
 .menu__right button i:hover {
-    color: var(--primary-color);
+    color: var(--secondary-color);
 }

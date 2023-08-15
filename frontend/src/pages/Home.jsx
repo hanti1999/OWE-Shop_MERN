@@ -3,6 +3,7 @@ import '../styles/home.css'
 import tshirt from '../assets/img/shirt/tshirt.png'
 import { Link } from 'react-router-dom'
 import ServiceList from '../services/ServiceList'
+import ProductList from '../components/UI/ProductList'
 
 const Home = () => {
   return (
@@ -51,10 +52,7 @@ const Home = () => {
           </div>
           <div className='popular-products'>
             <div className="grid grid-cols-12 gap-3">
-              <div className='col-span-3'>a</div>
-              <div className='col-span-3'>b</div>
-              <div className='col-span-3'>c</div>
-              <div className='col-span-3'>d</div>
+              <ProductList />
             </div>
           </div>
         </div>
