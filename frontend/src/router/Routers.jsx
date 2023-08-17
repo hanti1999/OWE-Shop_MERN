@@ -9,7 +9,7 @@ import ProductDetails from '../pages/ProductDetails';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import SearchResultList from '../pages/SearchResultList';
-import About from '../pages/About'
+import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Support from '../pages/Support';
 import PageNotFound from '../pages/PageNotFound';

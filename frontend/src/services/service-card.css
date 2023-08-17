@@ -3,7 +3,7 @@
 }
 
 .service__item {
-    border-right: 1px solid var(--secondary-color);
-    border-bottom: 1px solid var(--secondary-color);
+    border-right: 2px solid var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
     border-bottom-right-radius: 10px;
 }

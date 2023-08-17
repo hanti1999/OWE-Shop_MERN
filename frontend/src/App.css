@@ -47,35 +47,35 @@ ul {
 }
 
 .primary__btn {
-  background: var(--secondary-color) !important;
-  border: none !important;
-  border-radius: 50px !important;
-  padding: 0.4rem 1.5rem !important;
+  background: var(--secondary-color);
+  border: none;
+  border-radius: 50px;
 }
 
 .primary__btn a {
+  display: block;
+  padding: 0.4rem 1.5rem;
   font-size: 1.1rem;
-  text-decoration: none;
   color: #fff;
 }
+
 .primary__btn a:hover {
   color: inherit;
 }
+
 .secondary__btn {
-  background: transparent !important;
-  color: #0b2727 !important;
-  border: none !important;
-  font-weight: 500 !important;
+  border-radius: 50px;
+  border: 2px solid var(--secondary-color);
 }
 
 .secondary__btn a {
-  text-decoration: none;
-  font-size: 1.1rem;
-  color: var(--heading-color);
+  display: block;
+  padding: 8px 24px;
+  font-weight: 500;
 }
 
 .secondary__btn a:hover {
-  color: inherit;
+  color: var(--secondary-color);
 }
 
 .section__subtitle {

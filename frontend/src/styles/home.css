@@ -1,11 +1,11 @@
 .section-title {
-    @apply text-center my-3;
+    @apply text-center mt-3 mb-10;
 }
 
 .section-title h1 {
     @apply uppercase text-3xl font-semibold;
 }
 
-.section-title .separate {
-    @apply py-1 border-b border-[#faa935] mx-auto w-24;
+.separate {
+    @apply py-1 border-b-2 border-[#faa935] w-24;
 }

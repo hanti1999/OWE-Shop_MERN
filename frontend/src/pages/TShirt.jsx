@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const TShirt = () => {
-  return (
-    <div>TShirt</div>
-  )
-}
+  return <div>TShirt</div>;
+};
 
-export default TShirt
+export default TShirt;

@@ -1,6 +1,6 @@
-import React from 'react'
-import ProductCard from '../../shared/ProductCard'
-import productData from '../../assets/data/products'
+import React from 'react';
+import ProductCard from '../../shared/ProductCard';
+import productData from '../../assets/data/products';
 
 const ProductList = () => {
   return (
@@ -11,7 +11,7 @@ const ProductList = () => {
         </div>
       ))}
     </>
-  )
-}
+  );
+};
 
-export default ProductList
+export default ProductList;
