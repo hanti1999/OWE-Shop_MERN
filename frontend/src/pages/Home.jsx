@@ -11,6 +11,8 @@ import img3 from '../assets/img/shirt/tshirt4.jpg';
 import img4 from '../assets/img/shirt/tshirt5.jpg';
 import bottomBanner from '../assets/img/tshirtBanner.jpg';
 
+import MasonryImages from '../components/Feedback-images/MasonryImages';
+
 const Home = () => {
   return (
     <>
@@ -156,6 +158,23 @@ const Home = () => {
             <button className='primary__btn mt-6'>
               <Link to='/shop'>Mua ngay</Link>
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Feedback */}
+      <section>
+        <div className='container'>
+          <div className='grid grid-cols-12'>
+            <div className='col-span-12'>
+              <div className='section-title'>
+                <h1>Góc Feedback</h1>
+                <div className='separate mx-auto'></div>
+              </div>
+            </div>
+            <div className='col-span-12'>
+              <MasonryImages />
+            </div>
           </div>
         </div>
       </section>

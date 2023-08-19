@@ -91,5 +91,5 @@ ul {
 }
 
 .container {
-  @apply mx-auto xl:max-w-[1200px];
+  @apply mx-auto xl:max-w-[1200px] max-xl:px-2;
 }

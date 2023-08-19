@@ -9,3 +9,11 @@
 .separate {
     @apply py-1 border-b-2 border-[#faa935] w-24;
 }
+
+.masonry__img {
+    transition: .3s;
+}
+
+.masonry__img:hover {
+    transform: scale(1.05);
+}
