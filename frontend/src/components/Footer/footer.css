@@ -1,0 +1,27 @@
+footer h4 {
+    color: #fff;
+    border-bottom: 2px solid var(--secondary-color);
+    display: inline-block;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+}
+
+footer p, footer a {
+    color: rgb(156 163 175);
+}
+
+footer span {
+    color: #fff;
+}
+
+footer a {
+    display: block;
+}
+
+footer a:hover {
+    color: var(--secondary-color);
+}
+
+footer a i {
+    font-size: 20px;
+}

@@ -16,6 +16,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -92,4 +93,8 @@ ul {
 
 .container {
   @apply mx-auto xl:max-w-[1200px] max-xl:px-2;
+}
+
+.separate {
+  @apply py-1 border-b-2 border-[#faa935] w-24;
 }

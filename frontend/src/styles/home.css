@@ -6,10 +6,6 @@
     @apply uppercase text-3xl font-semibold;
 }
 
-.separate {
-    @apply py-1 border-b-2 border-[#faa935] w-24;
-}
-
 .masonry__img {
     transition: .3s;
 }

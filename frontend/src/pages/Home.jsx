@@ -3,6 +3,8 @@ import '../styles/home.css';
 import { Link } from 'react-router-dom';
 import ServiceList from '../services/ServiceList';
 import ProductList from '../components/UI/ProductList';
+import SectionTitle from '../shared/SectionTitle';
+import SliderBanner from '../components/SliderBanner/SliderBanner';
 
 import img from '../assets/img/shirt/tshirt1.png';
 import img1 from '../assets/img/shirt/tshirt2.jpg';
@@ -19,33 +21,7 @@ const Home = () => {
       {/* Main banner ====== */}
       <section className='bg-gray-200'>
         <div className='container'>
-          <div className='grid grid-cols-2 gap-10'>
-            <div className='col-span-2 md:col-span-1'>
-              <img className='h-[500px]' src={img} alt='' />
-            </div>
-            <div className='col-span-2 md:col-span-1 flex items-center'>
-              <div>
-                <h4 className='font-semibold text-xl'>Sản phẩm nổi bật</h4>
-                <h1 className='my-8 text-4xl font-bold uppercase'>
-                  áo thun overwhelmet
-                </h1>
-                <p className='italic pb-1'>
-                  Trời thì nóng nhưng em chẳng sợ cóng!
-                </p>
-                <p>
-                  Siêu phẩm mùa hè: áo thun 100% cotton, co dãn 2 chiều, bo cổ
-                  dày dặn, hình may sắc nét
-                </p>
-                <div className='my-6'>
-                  <span>Giá chỉ: </span>
-                  <b className='pl-2 text-2xl'>120.000đ</b>
-                </div>
-                <button className='primary__btn'>
-                  <Link to='/shop'>Mua ngay</Link>
-                </button>
-              </div>
-            </div>
-          </div>
+          <SliderBanner />
         </div>
       </section>
 
@@ -61,10 +37,7 @@ const Home = () => {
       {/* Popular products ====== */}
       <section className='popular-wrapper'>
         <div className='container'>
-          <div className='section-title'>
-            <h1>Sản phẩm phổ biến</h1>
-            <div className='separate mx-auto'></div>
-          </div>
+          <SectionTitle title={'Sản phẩm phổ biến'} />
           <div className='popular-products'>
             <div className='grid grid-cols-12 gap-3'>
               <ProductList />
@@ -72,7 +45,7 @@ const Home = () => {
           </div>
           <div className='w-full text-center mt-10'>
             <button className='secondary__btn'>
-              <Link to='/'>Xem thêm</Link>
+              <Link to='/shop'>Xem thêm</Link>
             </button>
           </div>
         </div>
@@ -92,7 +65,7 @@ const Home = () => {
                 explicabo iste dolore rerum animi, laboriosam nostrum!
               </p>
               <button className='primary__btn'>
-                <Link to='/'>Xem thêm</Link>
+                <Link to='/shop'>Xem thêm</Link>
               </button>
             </div>
             <div className='image-wrapper col-span-1'>
@@ -114,10 +87,7 @@ const Home = () => {
       {/* New products */}
       <section className='popular-wrapper'>
         <div className='container'>
-          <div className='section-title'>
-            <h1>Sản phẩm mới</h1>
-            <div className='separate mx-auto'></div>
-          </div>
+          <SectionTitle title={'Sản phẩm mới'} />
           <div className='popular-products'>
             <div className='grid grid-cols-12 gap-3'>
               <ProductList />
@@ -126,7 +96,7 @@ const Home = () => {
           </div>
           <div className='w-full text-center mt-10'>
             <button className='secondary__btn'>
-              <Link to='/'>Xem thêm</Link>
+              <Link to='/shop'>Xem thêm</Link>
             </button>
           </div>
         </div>
@@ -141,12 +111,10 @@ const Home = () => {
             alt=''
           />
           <div className='bottom-banner__content absolute top-0 w-full h-full flex flex-col items-center justify-center'>
-            <h4 className='text-xl text-white'>
-              Flash Sale
-              <span className=' ml-1 text-4xl font-semibold text-[#faa935]'>
-                99.000 VND
-              </span>
-            </h4>
+            <h4 className='text-xl text-white italic'>Flash Sale</h4>
+            <span className=' ml-1 text-4xl font-semibold text-[#faa935]'>
+              99.000 VND
+            </span>
             <h3 className='font-bold uppercase text-3xl text-white my-4'>
               Chỉ duy nhất hôm nay
             </h3>
@@ -167,10 +135,7 @@ const Home = () => {
         <div className='container'>
           <div className='grid grid-cols-12'>
             <div className='col-span-12'>
-              <div className='section-title'>
-                <h1>Góc Feedback</h1>
-                <div className='separate mx-auto'></div>
-              </div>
+              <SectionTitle title={'Góc feedback'} />
             </div>
             <div className='col-span-12'>
               <MasonryImages />
