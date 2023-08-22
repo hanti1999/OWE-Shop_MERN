@@ -54,7 +54,7 @@ const Header = () => {
         <div className='flex items-center justify-between'>
           {/* Logo ====== */}
           <Link to='/' className='logo'>
-            <h1 className='text-6xl'>OWE</h1>
+            <h1 className='md:text-6xl text-4xl'>OWE</h1>
           </Link>
 
           {/* Menu ====== */}

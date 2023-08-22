@@ -6,7 +6,7 @@ const ProductList = () => {
   return (
     <>
       {productData?.map((prod, index) => (
-        <div key={index} className='col-span-3 mb-2'>
+        <div key={index} className='mb-2'>
           <ProductCard products={prod} />
         </div>
       ))}

@@ -6,10 +6,16 @@
     @apply uppercase text-3xl font-semibold;
 }
 
-.masonry__img {
+.masonry__img,
+.image-wrapper img {
     transition: .3s;
 }
 
-.masonry__img:hover {
+.masonry__img:hover,
+.image-wrapper img:hover {
     transform: scale(1.05);
+}
+
+.image-wrapper img {
+    border-radius: 4px;
 }

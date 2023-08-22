@@ -22,7 +22,7 @@ const ServiceList = () => {
   return (
     <>
       {servicesData.map((item, index) => (
-        <div key={index} className='col-span-4'>
+        <div key={index}>
           <ServiceCard item={item} />
         </div>
       ))}

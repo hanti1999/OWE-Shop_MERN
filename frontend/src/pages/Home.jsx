@@ -28,7 +28,7 @@ const Home = () => {
       {/* Service ====== */}
       <section className='services my-10'>
         <div className='container'>
-          <div className='grid grid-cols-12 gap-6'>
+          <div className='grid grid-cols-3 gap-6'>
             <ServiceList />
           </div>
         </div>
@@ -39,7 +39,7 @@ const Home = () => {
         <div className='container'>
           <SectionTitle title={'Sản phẩm phổ biến'} />
           <div className='popular-products'>
-            <div className='grid grid-cols-12 gap-3'>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
               <ProductList />
             </div>
           </div>
@@ -54,8 +54,8 @@ const Home = () => {
       {/* Mid banner ====== */}
       <section className='bg-gray-200 my-10'>
         <div className='container'>
-          <div className='grid grid-cols-2 gap-6'>
-            <div className='col-span-1'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+            <div>
               <h4 className='font-bold text-2xl'>BỘ SƯU TẬP</h4>
               <div className='separate'></div>
               <p className='mt-4 mb-10'>
@@ -68,16 +68,14 @@ const Home = () => {
                 <Link to='/shop'>Xem thêm</Link>
               </button>
             </div>
-            <div className='image-wrapper col-span-1'>
-              <div className='flex gap-1'>
-                <div>
-                  <img className='mb-1' src={img1} alt='' />
-                  <img src={img2} alt='' />
-                </div>
-                <div>
-                  <img className='mb-1' src={img3} alt='' />
-                  <img src={img4} alt='' />
-                </div>
+            <div className='flex gap-2 image-wrapper'>
+              <div>
+                <img className='mb-2' src={img1} alt='' />
+                <img src={img2} alt='' />
+              </div>
+              <div>
+                <img className='mb-2' src={img3} alt='' />
+                <img src={img4} alt='' />
               </div>
             </div>
           </div>
@@ -85,11 +83,11 @@ const Home = () => {
       </section>
 
       {/* New products */}
-      <section className='popular-wrapper'>
+      <section className='new-wrapper'>
         <div className='container'>
           <SectionTitle title={'Sản phẩm mới'} />
-          <div className='popular-products'>
-            <div className='grid grid-cols-12 gap-3'>
+          <div className='new-products'>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
               <ProductList />
               <ProductList />
             </div>
@@ -106,22 +104,20 @@ const Home = () => {
       <section className='bottom-banner my-10'>
         <div className='container relative'>
           <img
-            className='rounded aspect-video object-cover brightness-50'
+            className='rounded md:aspect-video md:object-cover brightness-50'
             src={bottomBanner}
             alt=''
           />
           <div className='bottom-banner__content absolute top-0 w-full h-full flex flex-col items-center justify-center'>
-            <h4 className='text-xl text-white italic'>Flash Sale</h4>
-            <span className=' ml-1 text-4xl font-semibold text-[#faa935]'>
+            <h4 className='md:text-xl text-white italic'>Flash Sale</h4>
+            <span className=' ml-1 md:text-4xl font-semibold text-[#faa935]'>
               99.000 VND
             </span>
-            <h3 className='font-bold uppercase text-3xl text-white my-4'>
+            <h3 className='font-bold uppercase md:text-3xl text-white my-4'>
               Chỉ duy nhất hôm nay
             </h3>
             <p className='text-white text-center'>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores
-              distinctio, nisi consequuntur excepturi nemo, ducimus in commodi
-              expedita quod pariatur assumenda culpa officia neque ipsam enim.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
             </p>
             <button className='primary__btn mt-6'>
               <Link to='/shop'>Mua ngay</Link>
@@ -133,13 +129,9 @@ const Home = () => {
       {/* Feedback */}
       <section>
         <div className='container'>
-          <div className='grid grid-cols-12'>
-            <div className='col-span-12'>
-              <SectionTitle title={'Góc feedback'} />
-            </div>
-            <div className='col-span-12'>
-              <MasonryImages />
-            </div>
+          <div className='grid grid-cols-1'>
+            <SectionTitle title={'Góc feedback'} />
+            <MasonryImages />
           </div>
         </div>
       </section>
