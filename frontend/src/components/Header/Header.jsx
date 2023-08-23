@@ -21,6 +21,21 @@ const nav__links = [
   },
 ];
 
+const nav__links2 = [
+  {
+    path: '/login',
+    icon: 'ri-user-3-line',
+  },
+  {
+    path: '/wishlist',
+    icon: 'ri-heart-line',
+  },
+  {
+    path: '/cart',
+    icon: 'ri-shopping-cart-2-line',
+  },
+];
+
 const Header = () => {
   // Open search bar ======
   const openSearchRef = useRef();
@@ -28,8 +43,27 @@ const Header = () => {
     openSearchRef.current.classList.toggle('open-search');
   };
 
+  const headerRef = useRef(null);
+  const stickyHeaderFunc = () => {
+    window,
+      addEventListener('scroll', () => {
+        if (
+          document.body.scrollTop > 80 ||
+          document.documentElement.scrollTop > 80
+        ) {
+          headerRef.current.classList.add('sticky__header');
+        } else {
+          headerRef.current.classList.remove('sticky__header');
+        }
+      });
+  };
+  useEffect(() => {
+    stickyHeaderFunc();
+    return window.removeEventListener('scroll', stickyHeaderFunc);
+  });
+
   return (
-    <header className='header w-full h-20 leading-[80px]'>
+    <header className='header w-full h-20 leading-[80px]' ref={headerRef}>
       <div className='container relative'>
         {/* Search bar ====== */}
         <form
@@ -78,21 +112,13 @@ const Header = () => {
               <button onClick={searchToggle}>
                 <i className='ri-search-line cursor-pointer'></i>
               </button>
-              <button>
-                <Link to='/login'>
-                  <i className='ri-user-3-line'></i>
-                </Link>
-              </button>
-              <button>
-                <Link to='/'>
-                  <i className='ri-heart-line'></i>
-                </Link>
-              </button>
-              <button>
-                <Link to='/'>
-                  <i className='ri-shopping-cart-2-line'></i>
-                </Link>
-              </button>
+              {nav__links2.map((item, index) => (
+                <button key={index}>
+                  <Link to={item.path}>
+                    <i className={item.icon}></i>
+                  </Link>
+                </button>
+              ))}
             </div>
             {/* Mobile menu ====== */}
             <span className='mobile__menu md:hidden'>

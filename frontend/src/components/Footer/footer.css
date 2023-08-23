@@ -14,10 +14,6 @@ footer span {
     color: #fff;
 }
 
-.footer__link a {
-    display: block;
-}
-
 footer a:hover {
     color: var(--secondary-color);
 }
