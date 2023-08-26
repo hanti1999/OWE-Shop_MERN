@@ -1,63 +1,48 @@
 .logo h1 {
-    font-family: var(--logo-font);
+    @apply font-cherry-bomb-one
 }
 
 header i {
-    font-size: 1.5rem;
-    line-height: 2rem;
+    @apply text-2xl leading-8
 }
 
 .nav__item a {
-    color: var(--heading-color);
-    font-weight: 500;
-    font-size: 1.1rem;
+    @apply font-medium text-lg text-heading-color
 }
 
 .nav__item a:hover {
-    color: inherit;
+    @apply text-inherit
 }
 
 .nav__item a.active__link {
-    color: var(--secondary-color);
+    @apply text-secondary-color
 }
 
 .mobile__menu {
-    color: var(--heading-color);
-    /* display: none; */
+    @apply text-heading-color
 }
 
 .sticky__header {
-    width: 100%;
-    height: 80px;
-    line-height: 80px;
-    background-color: #fff;
-    position: sticky;
-    top: 0;
-    left: 0;
-    box-shadow: 3px 3px 8px -3px #ddd;
-    z-index: 99;
+    @apply w-full h-[80px] leading-[80px] sticky top-0 left-0 bg-white z-[99] shadow-sticky-shadow
 }
 
 #form__search {
-    display: none;
-    z-index: 100;
+    @apply hidden z-[100]
 }
 
 #form__search.open-search {
-    display: flex;
-    gap: 12px;
-    background-color: #fff;
+    @apply flex gap-3 bg-white
 }
 
 .nav__item a:hover,
 #form__search i:hover {
-    color: var(--secondary-color);
+    @apply text-secondary-color
 }
 
 .menu__right button {
-    cursor: default;
+    @apply cursor-default
 }
 
 .menu__right button i:hover {
-    color: var(--secondary-color);
+    @apply text-secondary-color
 }

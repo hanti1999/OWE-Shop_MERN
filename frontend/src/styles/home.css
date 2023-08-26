@@ -3,19 +3,19 @@
 }
 
 .section-title h1 {
-    @apply uppercase text-3xl font-semibold;
+    @apply uppercase text-2xl md:text-3xl font-semibold;
 }
 
 .masonry__img,
 .image-wrapper img {
-    transition: .3s;
+    @apply duration-300
 }
 
 .masonry__img:hover,
 .image-wrapper img:hover {
-    transform: scale(1.05);
+    @apply scale-105
 }
 
 .image-wrapper img {
-    border-radius: 4px;
+    @apply rounded
 }

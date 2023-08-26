@@ -1,23 +1,19 @@
 footer h4 {
-    color: #fff;
-    border-bottom: 2px solid var(--secondary-color);
-    display: inline-block;
-    padding-bottom: 6px;
-    margin-bottom: 6px;
+    @apply text-white inline-block pb-3 mb-2 border-b-2 border-secondary-color
 }
 
 footer p, footer a {
-    color: rgb(156 163 175);
+    @apply text-slate-400
 }
 
 footer span {
-    color: #fff;
+    @apply text-white
 }
 
 footer a:hover {
-    color: var(--secondary-color);
+    @apply text-secondary-color
 }
 
 footer a i {
-    font-size: 20px;
+    @apply text-xl
 }

@@ -26,9 +26,9 @@ const Home = () => {
       </section>
 
       {/* Service ====== */}
-      <section className='services my-10'>
+      <section className='services my-5 md:my-10'>
         <div className='container'>
-          <div className='grid grid-cols-3 gap-6'>
+          <div className='grid md:grid-cols-4 grid-cols-2 gap-6'>
             <ServiceList />
           </div>
         </div>
@@ -52,7 +52,7 @@ const Home = () => {
       </section>
 
       {/* Mid banner ====== */}
-      <section className='bg-gray-200 my-10'>
+      <section className='bg-gray-200 my-5 md:my-10'>
         <div className='container'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             <div>
@@ -100,15 +100,15 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Bottom banner */}
-      <section className='bottom-banner my-10'>
+      {/* Bot banner */}
+      <section className=' my-5 md:my-10'>
         <div className='container relative'>
           <img
             className='rounded md:aspect-video md:object-cover brightness-50'
             src={bottomBanner}
             alt=''
           />
-          <div className='bottom-banner__content absolute top-0 w-full h-full flex flex-col items-center justify-center'>
+          <div className=' absolute top-0 w-full h-full flex flex-col items-center justify-center'>
             <h4 className='md:text-xl text-white italic'>Flash Sale</h4>
             <span className=' ml-1 md:text-4xl font-semibold text-[#faa935]'>
               99.000 VND

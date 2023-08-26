@@ -40,8 +40,10 @@ const SliderBanner = () => {
           </div>
           <div className='col-span-2 md:col-span-1 flex items-center'>
             <div>
-              <h4 className='font-semibold text-xl'>Sản phẩm nổi bật</h4>
-              <h1 className='my-8 text-4xl font-bold uppercase'>
+              <h4 className='font-semibold text-lg md:text-xl'>
+                Sản phẩm nổi bật
+              </h4>
+              <h1 className='my-8 text-3xl md:text-4xl font-bold uppercase'>
                 áo thun overwhelmet
               </h1>
               <p className='italic pb-1'>
@@ -69,8 +71,10 @@ const SliderBanner = () => {
           </div>
           <div className='col-span-2 md:col-span-1 flex items-center'>
             <div>
-              <h4 className='font-semibold text-xl'>Sản phẩm nổi bật</h4>
-              <h1 className='my-8 text-4xl font-bold uppercase'>
+              <h4 className='font-semibold text-lg md:text-xl'>
+                Sản phẩm nổi bật
+              </h4>
+              <h1 className='my-8 text-3xl md:text-4xl font-bold uppercase'>
                 áo thun overwhelmet
               </h1>
               <p className='italic pb-1'>

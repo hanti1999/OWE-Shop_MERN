@@ -1,9 +1,3 @@
-.service__item i {
-    font-size: 2.2rem;
-}
-
 .service__item {
-    border-right: 2px solid var(--secondary-color);
-    border-bottom: 2px solid var(--secondary-color);
-    border-bottom-right-radius: 10px;
+    @apply border-r-2 border-r-secondary-color border-b-2 border-b-secondary-color rounded-br-xl h-[180px]
 }

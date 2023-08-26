@@ -13,18 +13,15 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+  @apply m-0 p-0 scroll-smooth box-border
 }
 
 body {
-  font-family: var(--font-name);
+  @apply font-montserrat
 }
 
 section {
-  padding: 25px 0px;
+  @apply py-[25px] px-0
 }
 
 h1,
@@ -36,59 +33,39 @@ h6,
 p,
 b,
 span {
-  color: var(--heading-color);
+  @apply text-heading-color
 }
 
 a {
-  text-decoration: none;
   color: unset;
+  @apply no-underline
 }
 ul {
-  list-style: none;
+  @apply list-none
 }
 
 .primary__btn {
-  background: var(--secondary-color);
-  border: none;
-  border-radius: 50px;
+  @apply bg-secondary-color border-none rounded-[50px]
 }
 
 .primary__btn a {
-  display: block;
-  padding: 0.4rem 1.5rem;
-  font-size: 1.1rem;
-  color: #fff;
+  @apply block text-[1.1rem] text-white px-6 py-2
 }
 
 .primary__btn a:hover {
-  color: inherit;
+  @apply text-inherit
 }
 
 .secondary__btn {
-  border-radius: 50px;
-  border: 2px solid var(--secondary-color);
+  @apply rounded-[50px] border-2 border-secondary-color
 }
 
 .secondary__btn a {
-  display: block;
-  padding: 8px 24px;
-  font-weight: 500;
+  @apply block px-6 py-2 font-medium
 }
 
 .secondary__btn a:hover {
-  color: var(--secondary-color);
-}
-
-.section__subtitle {
-  background: var(--secondary-color);
-  font-family: var(--subtitle-font-name);
-  width: max-content;
-  padding: 0px 0.5rem;
-  padding-right: 1rem;
-  border-radius: 50px;
-  font-weight: 500;
-  font-size: 1.7rem;
-  color: var(--heading-color);
+  @apply text-secondary-color
 }
 
 .container {
