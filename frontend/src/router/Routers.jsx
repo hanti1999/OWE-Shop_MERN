@@ -13,6 +13,8 @@ import About from '../pages/About';
 import Contact from '../pages/Contact';
 import Support from '../pages/Support';
 import PageNotFound from '../pages/PageNotFound';
+import Male from '../pages/Male';
+import Female from '../pages/Female';
 
 export const Routers = createBrowserRouter([
   {
@@ -55,6 +57,14 @@ export const Routers = createBrowserRouter([
       {
         path: '/support',
         element: <Support />,
+      },
+      {
+        path: '/nam',
+        element: <Male />,
+      },
+      {
+        path: '/nu',
+        element: <Female />,
       },
     ],
   },

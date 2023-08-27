@@ -8,11 +8,11 @@ const nav__links = [
     display: 'TRANG CHỦ',
   },
   {
-    path: '/shop',
+    path: '/nam',
     display: 'NAM',
   },
   {
-    path: '/shop',
+    path: '/nu',
     display: 'NỮ',
   },
   {

@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import '../styles/home.css';
 
 import ServiceList from '../services/ServiceList';
 import SectionTitle from '../shared/SectionTitle';
 import ProductList from '../components/UI/ProductList';
+import ProductCard from '../shared/ProductCard';
 import SliderBanner from '../components/SliderBanner/SliderBanner';
 import MasonryImages from '../components/Feedback-images/MasonryImages';
 
+import products from '../assets/data/products';
 import img1 from '../assets/img/shirt/tshirt2.jpg';
 import img2 from '../assets/img/shirt/tshirt3.jpg';
 import img3 from '../assets/img/shirt/tshirt4.jpg';
@@ -38,7 +41,11 @@ const Home = () => {
         <div className='container'>
           <SectionTitle title={'Sản phẩm phổ biến'} />
           <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-            <ProductList />
+            {products?.slice(0, 4).map((product, index) => (
+              <div key={index} className='mb-2'>
+                <ProductCard products={product} />
+              </div>
+            ))}
           </div>
           <div className='w-full text-center mt-10'>
             <button className='secondary__btn'>
@@ -84,8 +91,11 @@ const Home = () => {
         <div className='container'>
           <SectionTitle title={'Sản phẩm mới'} />
           <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-            <ProductList />
-            <ProductList />
+            {products?.slice(0, 8).map((product, index) => (
+              <div key={index} className='mb-2'>
+                <ProductCard products={product} />
+              </div>
+            ))}
           </div>
           <div className='w-full text-center mt-10'>
             <button className='secondary__btn'>

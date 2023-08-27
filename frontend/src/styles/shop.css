@@ -1,0 +1,23 @@
+.paginate__ul {
+    @apply inline-flex border border-[#ccc] rounded-md text-secondary-color
+}
+
+.paginate__ul li {
+    @apply border-r border-[#ccc]
+}
+
+.paginate__ul li:last-child {
+    @apply border-r-0
+}
+
+.paginate__ul li a {
+    @apply block px-3 py-2
+}
+
+.selected {
+    @apply bg-secondary-color text-white
+}
+
+.disabled {
+    @apply text-[#ddd]
+}
