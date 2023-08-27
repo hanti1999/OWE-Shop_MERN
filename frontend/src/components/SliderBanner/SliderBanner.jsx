@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
-import img from '../../assets/img/shirt/tshirt1.png';
 import { Link } from 'react-router-dom';
+import img from '../../assets/img/shirt/tshirt1.png';
 
 const SliderBanner = () => {
   const settings = {

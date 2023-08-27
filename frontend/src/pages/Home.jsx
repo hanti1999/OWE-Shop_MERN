@@ -1,31 +1,30 @@
 import React from 'react';
-import '../styles/home.css';
 import { Link } from 'react-router-dom';
-import ServiceList from '../services/ServiceList';
-import ProductList from '../components/UI/ProductList';
-import SectionTitle from '../shared/SectionTitle';
-import SliderBanner from '../components/SliderBanner/SliderBanner';
+import '../styles/home.css';
 
-import img from '../assets/img/shirt/tshirt1.png';
+import ServiceList from '../services/ServiceList';
+import SectionTitle from '../shared/SectionTitle';
+import ProductList from '../components/UI/ProductList';
+import SliderBanner from '../components/SliderBanner/SliderBanner';
+import MasonryImages from '../components/Feedback-images/MasonryImages';
+
 import img1 from '../assets/img/shirt/tshirt2.jpg';
 import img2 from '../assets/img/shirt/tshirt3.jpg';
 import img3 from '../assets/img/shirt/tshirt4.jpg';
 import img4 from '../assets/img/shirt/tshirt5.jpg';
 import bottomBanner from '../assets/img/tshirtBanner.jpg';
 
-import MasonryImages from '../components/Feedback-images/MasonryImages';
-
 const Home = () => {
   return (
     <>
-      {/* Main banner ====== */}
+      {/* Main banner */}
       <section className='bg-gray-200'>
         <div className='container'>
           <SliderBanner />
         </div>
       </section>
 
-      {/* Service ====== */}
+      {/* Service */}
       <section className='services my-5 md:my-10'>
         <div className='container'>
           <div className='grid md:grid-cols-4 grid-cols-2 gap-6'>
@@ -34,14 +33,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Popular products ====== */}
-      <section className='popular-wrapper'>
+      {/* Popular products */}
+      <section>
         <div className='container'>
           <SectionTitle title={'Sản phẩm phổ biến'} />
-          <div className='popular-products'>
-            <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-              <ProductList />
-            </div>
+          <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
+            <ProductList />
           </div>
           <div className='w-full text-center mt-10'>
             <button className='secondary__btn'>
@@ -51,7 +48,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Mid banner ====== */}
+      {/* Mid banner */}
       <section className='bg-gray-200 my-5 md:my-10'>
         <div className='container'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -83,14 +80,12 @@ const Home = () => {
       </section>
 
       {/* New products */}
-      <section className='new-wrapper'>
+      <section>
         <div className='container'>
           <SectionTitle title={'Sản phẩm mới'} />
-          <div className='new-products'>
-            <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-              <ProductList />
-              <ProductList />
-            </div>
+          <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
+            <ProductList />
+            <ProductList />
           </div>
           <div className='w-full text-center mt-10'>
             <button className='secondary__btn'>
@@ -108,7 +103,7 @@ const Home = () => {
             src={bottomBanner}
             alt=''
           />
-          <div className=' absolute top-0 w-full h-full flex flex-col items-center justify-center'>
+          <div className=' absolute top-0 left-0 right-0 w-full h-full flex flex-col items-center justify-center'>
             <h4 className='md:text-xl text-white italic'>Flash Sale</h4>
             <span className=' ml-1 md:text-4xl font-semibold text-[#faa935]'>
               99.000 VND

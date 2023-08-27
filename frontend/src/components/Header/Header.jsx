@@ -37,26 +37,26 @@ const nav__links2 = [
 ];
 
 const Header = () => {
-  // Open search bar ======
-  const openSearchRef = useRef();
+  const searchRef = useRef();
+  const headerRef = useRef(null);
+
   const searchToggle = () => {
-    openSearchRef.current.classList.toggle('open-search');
+    searchRef.current.classList.toggle('open-search');
   };
 
-  const headerRef = useRef(null);
   const stickyHeaderFunc = () => {
-    window,
-      addEventListener('scroll', () => {
-        if (
-          document.body.scrollTop > 80 ||
-          document.documentElement.scrollTop > 80
-        ) {
-          headerRef.current.classList.add('sticky__header');
-        } else {
-          headerRef.current.classList.remove('sticky__header');
-        }
-      });
+    window.addEventListener('scroll', () => {
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
+        headerRef.current.classList.add('sticky__header');
+      } else {
+        headerRef.current.classList.remove('sticky__header');
+      }
+    });
   };
+
   useEffect(() => {
     stickyHeaderFunc();
     return window.removeEventListener('scroll', stickyHeaderFunc);
@@ -67,7 +67,7 @@ const Header = () => {
       <div className='container relative'>
         {/* Search bar ====== */}
         <form
-          ref={openSearchRef}
+          ref={searchRef}
           id='form__search'
           className='absolute left-0 right-0'
         >
