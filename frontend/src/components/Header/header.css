@@ -46,3 +46,7 @@ header i {
 .menu__right button i:hover {
     @apply text-secondary-color
 }
+
+.cart__badge {
+    @apply absolute w-5 h-5 text-center leading-5 bg-secondary-color rounded-full left-1/2 bottom-3/4 font-semibold text-sm
+}

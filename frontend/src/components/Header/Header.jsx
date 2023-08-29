@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import './header.css';
+
+import { useSelector } from 'react-redux';
 
 const nav__links = [
   {
@@ -21,24 +23,10 @@ const nav__links = [
   },
 ];
 
-const nav__links2 = [
-  {
-    path: '/login',
-    icon: 'ri-user-3-line',
-  },
-  {
-    path: '/wishlist',
-    icon: 'ri-heart-line',
-  },
-  {
-    path: '/cart',
-    icon: 'ri-shopping-cart-2-line',
-  },
-];
-
 const Header = () => {
   const searchRef = useRef();
   const headerRef = useRef(null);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const searchToggle = () => {
     searchRef.current.classList.toggle('open-search');
@@ -112,13 +100,22 @@ const Header = () => {
               <button onClick={searchToggle}>
                 <i className='ri-search-line cursor-pointer'></i>
               </button>
-              {nav__links2.map((item, index) => (
-                <button key={index}>
-                  <Link to={item.path}>
-                    <i className={item.icon}></i>
-                  </Link>
-                </button>
-              ))}
+              <button>
+                <Link to='/login'>
+                  <i className='ri-user-3-line'></i>
+                </Link>
+              </button>
+              <button>
+                <Link to='/wishlish'>
+                  <i className='ri-heart-line'></i>
+                </Link>
+              </button>
+              <button>
+                <Link className='relative' to='/cart'>
+                  <i className='ri-shopping-cart-2-line'></i>
+                  <span className='cart__badge'>{totalQuantity}</span>
+                </Link>
+              </button>
             </div>
             {/* Mobile menu ====== */}
             <span className='mobile__menu md:hidden'>

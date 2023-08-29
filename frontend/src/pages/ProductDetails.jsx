@@ -4,10 +4,14 @@ import products from '../assets/data/products';
 import ServiceList from '../services/ServiceList';
 import ProductList from '../shared/ProductList';
 
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../redux/slices/cartSlice';
+
 import '../styles/product-details.css';
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   const product = products.find(
     (product) => product.id === id.slice(-2, id.length)
@@ -19,6 +23,18 @@ const ProductDetails = () => {
   const relatedProducts = products
     .slice(0, 4)
     .filter((item) => item.gender === gender);
+
+  const addToCart = () => {
+    dispatch(
+      cartActions.addItem({
+        id: id,
+        title: title,
+        price: price,
+        productImg: productImg,
+      })
+    );
+    console.log('theem sp thanh cong!');
+  };
 
   return (
     <>
@@ -66,7 +82,10 @@ const ProductDetails = () => {
               </div>
 
               <div className='mt-6'>
-                <button className='bg-black text-white px-6 py-2 rounded-3xl'>
+                <button
+                  className='bg-black text-white px-6 py-2 rounded-3xl'
+                  onClick={addToCart}
+                >
                   <i className='ri-shopping-bag-3-line pr-1'></i>
                   Thêm vào giỏ hàng
                 </button>

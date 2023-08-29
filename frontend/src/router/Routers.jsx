@@ -15,6 +15,7 @@ import Support from '../pages/Support';
 import PageNotFound from '../pages/PageNotFound';
 import Male from '../pages/Male';
 import Female from '../pages/Female';
+import Cart from '../pages/Cart';
 
 export const Routers = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const Routers = createBrowserRouter([
       {
         path: '/nu',
         element: <Female />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
     ],
   },
