@@ -5,7 +5,6 @@ import '../styles/home.css';
 
 import ServiceList from '../services/ServiceList';
 import SectionTitle from '../shared/SectionTitle';
-import ProductList from '../components/UI/ProductList';
 import ProductCard from '../shared/ProductCard';
 import SliderBanner from '../components/SliderBanner/SliderBanner';
 import MasonryImages from '../components/Feedback-images/MasonryImages';

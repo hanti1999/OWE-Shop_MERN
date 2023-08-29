@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-import ProductList from '../components/UI/ProductList';
 import ProductCard from '../shared/ProductCard';
 
 import products from '../assets/data/products';

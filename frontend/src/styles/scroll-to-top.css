@@ -1,3 +1,3 @@
 .showSTTBtn {
-    @apply bg-[#faa935] fixed w-12 h-12 bottom-8 right-8 z-50 text-xl border-none outline-none text-white cursor-pointer rounded transition-opacity duration-300 hover:bg-[#333];
+    @apply bg-[#faa935] fixed w-12 h-12 bottom-4 md:bottom-8 right-4 md:right-8 z-50 text-xl border-none outline-none text-white cursor-pointer rounded transition-opacity duration-300 hover:bg-[#333];
 }

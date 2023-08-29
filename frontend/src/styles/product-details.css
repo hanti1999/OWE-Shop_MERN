@@ -1,0 +1,4 @@
+.product__img img,
+.product__gallery img {
+    @apply rounded max-md:mb-2
+}
