@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import products from '../assets/data/products';
 import ServiceList from '../services/ServiceList';
@@ -10,6 +10,8 @@ import { cartActions } from '../redux/slices/cartSlice';
 import '../styles/product-details.css';
 
 const ProductDetails = () => {
+  const [enterSize, setEnterSize] = useState('');
+
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -17,23 +19,28 @@ const ProductDetails = () => {
     (product) => product.id === id.slice(-2, id.length)
   );
 
-  const { productImg, title, price, salePrice, gender, size, details } =
-    product;
+  const { productImg, title, price, sale, gender, size, details } = product;
+  const salePrice = price * sale;
 
   const relatedProducts = products
     .slice(0, 4)
-    .filter((item) => item.gender === gender);
+    .filter((product) => product.gender === gender);
 
   const addToCart = () => {
-    dispatch(
-      cartActions.addItem({
-        id: id,
-        title: title,
-        price: price,
-        productImg: productImg,
-      })
-    );
-    console.log('theem sp thanh cong!');
+    if (enterSize === '') {
+      alert('Bạn chưa chọn size!');
+    } else {
+      dispatch(
+        cartActions.addItem({
+          id: id.slice(-2, id.length),
+          title: title,
+          size: enterSize,
+          price: salePrice,
+          productImg: productImg,
+        })
+      );
+      console.log('theem sp thanh cong!');
+    }
   };
 
   return (
@@ -59,7 +66,7 @@ const ProductDetails = () => {
                 <p className=' font-semibold text-base md:text-xl'>
                   Giá Sale:{' '}
                   <span className='text-red-500 pr-2'>
-                    {salePrice.toLocaleString()} đ
+                    {(price * sale).toLocaleString()} đ
                   </span>
                   (tiết kiệm: {(price - salePrice).toLocaleString()} đ)
                 </p>
@@ -68,7 +75,12 @@ const ProductDetails = () => {
               <div className=' mt-3 flex max-md:flex-col justify-between'>
                 <div>
                   Kích thước áo:
-                  <select className='border rounded-lg px-1 ml-1' name='' id=''>
+                  <select
+                    className='border rounded-lg px-1 ml-1'
+                    onChange={(e) => setEnterSize(e.target.value)}
+                    value={enterSize}
+                  >
+                    <option>Chọn size</option>
                     {size.map((size, index) => (
                       <option key={index} value={size}>
                         {size}
