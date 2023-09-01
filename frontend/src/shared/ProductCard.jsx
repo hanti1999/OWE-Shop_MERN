@@ -15,7 +15,7 @@ const ProductCard = ({ products }) => {
       >
         <img src={productImg} className='object-cover h-full w-full' alt='' />
       </Link>
-      <div className='product__info p-1'>
+      <div className='product__info p-2'>
         <div className='flex justify-between'>
           <span className='text-gray-500'>{gender}</span>
           <span className='cursor-pointer'>

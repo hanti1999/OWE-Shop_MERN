@@ -29,7 +29,7 @@ const Home = () => {
       {/* Service */}
       <section className='services my-5 md:my-10'>
         <div className='container'>
-          <div className='grid md:grid-cols-4 grid-cols-2 gap-6'>
+          <div className='grid md:grid-cols-4 grid-cols-2 gap-4 md:gap-6'>
             <ServiceList />
           </div>
         </div>
@@ -112,7 +112,7 @@ const Home = () => {
             src={bottomBanner}
             alt=''
           />
-          <div className=' absolute top-0 left-0 right-0 w-full h-full flex flex-col items-center justify-center'>
+          <div className=' absolute top-0 left-0 right-0 w-full h-full flex flex-col items-center justify-center p-1'>
             <h4 className='md:text-xl text-white italic'>Flash Sale</h4>
             <span className=' ml-1 md:text-4xl font-semibold text-[#faa935]'>
               99.000 VND

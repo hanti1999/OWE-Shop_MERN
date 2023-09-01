@@ -1,0 +1,7 @@
+thead th {
+    @apply text-start
+}
+
+tbody td {
+    @apply pt-1
+}

@@ -39,7 +39,7 @@ const ProductDetails = () => {
           productImg: productImg,
         })
       );
-      console.log('theem sp thanh cong!');
+      console.log('test: theem sp thanh cong!');
     }
   };
 
@@ -66,7 +66,7 @@ const ProductDetails = () => {
                 <p className=' font-semibold text-base md:text-xl'>
                   Giá Sale:{' '}
                   <span className='text-red-500 pr-2'>
-                    {(price * sale).toLocaleString()} đ
+                    {salePrice.toLocaleString()} đ
                   </span>
                   (tiết kiệm: {(price - salePrice).toLocaleString()} đ)
                 </p>
