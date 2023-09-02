@@ -49,7 +49,7 @@ ul {
 }
 
 .primary__btn a {
-  @apply block text-[1.1rem] text-white px-6 py-2
+  @apply block text-[1.1rem] text-white px-6 py-2 transition-all
 }
 
 .primary__btn a:hover {
@@ -61,7 +61,7 @@ ul {
 }
 
 .secondary__btn a {
-  @apply block px-6 py-2 font-medium
+  @apply block px-6 py-2 font-medium transition-all
 }
 
 .secondary__btn a:hover {
