@@ -10,12 +10,8 @@ const nav__links = [
     display: 'TRANG CHỦ',
   },
   {
-    path: '/nam',
-    display: 'NAM',
-  },
-  {
-    path: '/nu',
-    display: 'NỮ',
+    path: '/shop',
+    display: 'SẢN PHẨM MỚI',
   },
   {
     path: '/support',
@@ -80,7 +76,7 @@ const Header = () => {
           </Link>
 
           {/* Menu ====== */}
-          <ul className='hidden md:flex items-center gap-12 mb-0 pl-0'>
+          <ul className='hidden md:flex items-center gap-10 mb-0 pl-0'>
             {nav__links.map((item, index) => (
               <li className='nav__item' key={index}>
                 <NavLink

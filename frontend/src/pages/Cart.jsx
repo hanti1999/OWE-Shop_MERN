@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/cart.css';
 
 import { cartActions } from '../redux/slices/cartSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const totalAmount = useSelector((state) => state.cart.totalAmount);
-  const validatePhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+  const servicePee = 25000;
+  const totalWithSP = Number(totalAmount) + Number(servicePee);
 
   return (
     <section>
@@ -30,13 +32,14 @@ const Cart = () => {
                   <tr>
                     <td colSpan={2}>
                       <p>
-                        Phí Giao hàng: 25.000đ (Miễn phí với đơn hàng từ 500k)
+                        Phí Giao hàng: {servicePee.toLocaleString()}đ (Miễn phí
+                        với đơn hàng từ 500k)
                       </p>
                       <p>
                         Tổng:{' '}
                         <span className='text-red-500 text-lg'>
                           {totalAmount <= 500000
-                            ? (totalAmount + 25000).toLocaleString()
+                            ? totalWithSP.toLocaleString()
                             : totalAmount.toLocaleString()}
                           đ
                         </span>
@@ -59,8 +62,6 @@ const Cart = () => {
     </section>
   );
 };
-
-export default Cart;
 
 const Tr = ({ item }) => {
   const dispatch = useDispatch();
@@ -96,9 +97,30 @@ const Tr = ({ item }) => {
 };
 
 const Form = () => {
+  const [order, setOrder] = useState({
+    userId: '01',
+    userEmail: 'example@email.com',
+    txtCustomerName: 'Yenny',
+    txtPhone: '096225259',
+    txtAddress: 'Việt Nam, Trái Đất',
+    txtNote: 'nhanh cai chan len',
+  });
+
+  const validatePhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setOrder((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+
+  const handlePlaceOrder = (e) => {
+    e.preventDefault();
+    navigate('/thank-you');
+  };
+
   return (
     <>
-      <form action='' method='POST'>
+      <form action='' method='POST' onSubmit={handlePlaceOrder}>
         <div className='form-group'>
           <label htmlFor='txtCustomerName'>Tên</label>
           <input
@@ -108,6 +130,7 @@ const Form = () => {
             placeholder='Tên người nhận'
             name='txtCustomerName'
             id='txtCustomerName'
+            onChange={handleChange}
           />
         </div>
         <div className='form-group'>
@@ -119,6 +142,7 @@ const Form = () => {
             placeholder='Số điện thoại'
             name='txtPhone'
             id='txtPhone'
+            onChange={handleChange}
           />
         </div>
         <div className='form-group'>
@@ -130,6 +154,7 @@ const Form = () => {
             placeholder='Địa chỉ nhận hàng'
             name='txtAddress'
             id='txtAddress'
+            onChange={handleChange}
           />
         </div>
         <div className='form-group'>
@@ -140,11 +165,15 @@ const Form = () => {
             placeholder='Ghi chú'
             name='txtNote'
             id='txtNote'
+            onChange={handleChange}
           />
         </div>
       </form>
-      <button className='primary__btn bg-secondary-color w-full mt-4'>
-        <a href='#'>Đặt hàng</a>
+      <button
+        className='primary__btn bg-secondary-color w-full mt-4'
+        onClick={handlePlaceOrder}
+      >
+        <span>Đặt hàng</span>
       </button>
       <button className='secondary__btn border-secondary-color w-full mt-6'>
         <Link to='/'>Tiếp tục mua sắm</Link>
@@ -152,3 +181,5 @@ const Form = () => {
     </>
   );
 };
+
+export default Cart;

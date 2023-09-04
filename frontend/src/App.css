@@ -48,11 +48,13 @@ ul {
   @apply bg-secondary-color border-none rounded-[50px]
 }
 
-.primary__btn a {
+.primary__btn a,
+.primary__btn span {
   @apply block text-[1.1rem] text-white px-6 py-2 transition-all
 }
 
-.primary__btn a:hover {
+.primary__btn a:hover,
+.primary__btn span:hover {
   @apply text-inherit
 }
 

@@ -2,8 +2,6 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import App from '../App';
 import Home from '../pages/Home';
-import TShirt from '../pages/TShirt';
-import TShirtDetails from '../pages/TShirtDetails';
 import Shop from '../pages/Shop';
 import ProductDetails from '../pages/ProductDetails';
 import Login from '../pages/Login';
@@ -16,6 +14,8 @@ import PageNotFound from '../pages/PageNotFound';
 import Male from '../pages/Male';
 import Female from '../pages/Female';
 import Cart from '../pages/Cart';
+import Wishlist from '../pages/Wishlist';
+import ThankYou from '../pages/ThankYou';
 
 export const Routers = createBrowserRouter([
   {
@@ -70,6 +70,14 @@ export const Routers = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart />,
+      },
+      {
+        path: '/wishlist',
+        element: <Wishlist />,
+      },
+      {
+        path: '/thank-you',
+        element: <ThankYou />,
       },
     ],
   },

@@ -27,7 +27,7 @@ const Home = () => {
       </section>
 
       {/* Service */}
-      <section className='services my-5 md:my-10'>
+      <section className='services'>
         <div className='container'>
           <div className='grid md:grid-cols-4 grid-cols-2 gap-4 md:gap-6'>
             <ServiceList />
@@ -105,7 +105,7 @@ const Home = () => {
       </section>
 
       {/* Bot banner */}
-      <section className=' my-5 md:my-10'>
+      <section>
         <div className='container relative'>
           <img
             className='rounded md:aspect-video md:object-cover brightness-50'

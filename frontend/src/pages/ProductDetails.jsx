@@ -20,7 +20,7 @@ const ProductDetails = () => {
   );
 
   const { productImg, title, price, sale, gender, size, details } = product;
-  const salePrice = price * sale;
+  const salePrice = Number(price) * Number(sale);
 
   const relatedProducts = products
     .slice(0, 4)
@@ -68,7 +68,6 @@ const ProductDetails = () => {
                   <span className='text-red-500 pr-2'>
                     {salePrice.toLocaleString()} đ
                   </span>
-                  (tiết kiệm: {(price - salePrice).toLocaleString()} đ)
                 </p>
               </div>
 
