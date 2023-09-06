@@ -26,15 +26,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Service */}
-      <section className='services'>
-        <div className='container'>
-          <div className='grid md:grid-cols-4 grid-cols-2 gap-4 md:gap-6'>
-            <ServiceList />
-          </div>
-        </div>
-      </section>
-
       {/* Popular products */}
       <section>
         <div className='container'>
@@ -139,6 +130,15 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Service */}
+      {/* <section className='services'>
+        <div className='container'>
+          <div className='grid md:grid-cols-4 grid-cols-2 gap-4 md:gap-6'>
+            <ServiceList />
+          </div>
+        </div>
+      </section> */}
     </>
   );
 };

@@ -32,8 +32,14 @@ const Cart = () => {
                   <tr>
                     <td colSpan={2}>
                       <p>
-                        Phí Giao hàng: {servicePee.toLocaleString()}đ (Miễn phí
-                        với đơn hàng từ 500k)
+                        Phí Giao hàng:
+                        <span>
+                          {totalAmount <= 500000
+                            ? ` ${servicePee.toLocaleString()}`
+                            : ` 0`}
+                          đ
+                        </span>
+                        (Miễn phí với đơn hàng từ 500k)
                       </p>
                       <p>
                         Tổng:{' '}
