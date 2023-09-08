@@ -1,20 +1,20 @@
-.paginate__ul {
-    @apply inline-flex border border-[#ccc] rounded-md text-secondary-color
+.pagination {
+    @apply inline-flex border border-[#ccc] rounded-md text-secondary-color mt-4 overflow-hidden
 }
 
-.paginate__ul li {
-    @apply border-r border-[#ccc]
+.pagination span {
+    @apply border-r border-[#ccc] cursor-pointer
 }
 
-.paginate__ul li:last-child {
+.pagination span:last-child {
     @apply border-r-0
 }
 
-.paginate__ul li a {
+.pagination span {
     @apply block px-3 py-2
 }
 
-.selected {
+.active__page {
     @apply bg-secondary-color text-white
 }
 

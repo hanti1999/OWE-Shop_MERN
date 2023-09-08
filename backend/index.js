@@ -5,10 +5,17 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 import poductRoute from './routes/products.js';
+import authRoute from './routes/auth.js';
+import userRoute from './routes/users.js';
+import reviewRoute from './routes/reviews.js';
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
+const corsOptions = {
+  origin: true,
+  credentials: true,
+};
 
 // database connection
 mongoose.set('strictQuery', false);
@@ -25,9 +32,12 @@ const connect = async () => {
 };
 // middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
-app.use('/products', poductRoute);
+app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/products', poductRoute);
+app.use('/api/v1/users', userRoute);
+app.use('/api/v1/review', reviewRoute);
 
 app.listen(port, () => {
   connect();

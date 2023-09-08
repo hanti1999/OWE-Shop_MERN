@@ -5,23 +5,41 @@ import {
   deleteProduct,
   getSingleProduct,
   getAllProduct,
+  getProductBySearch,
+  getPopularProducts,
+  getNewProducts,
+  getProductCount,
 } from '../controllers/productController.js';
+
+import { verifyAdmin } from '../utils/verifyToken.js';
 
 const router = express.Router();
 
 // create new product
-router.post('/', createProduct);
+router.post('/', verifyAdmin, createProduct);
 
-// update new product
-router.put('/:id', updateProduct);
+// update product
+router.put('/:id', verifyAdmin, updateProduct);
 
-// delete new product
-router.delete('/:id', deleteProduct);
+// delete product
+router.delete('/:id', verifyAdmin, deleteProduct);
 
-// getSingle new product
+// get single product
 router.get('/:id', getSingleProduct);
 
-// getAll new product
+// get all product
 router.get('/', getAllProduct);
+
+// get product by search
+router.get('/search/getProductBySearch', getProductBySearch);
+
+// get popular product
+router.get('/search/getPopularProducts', getPopularProducts);
+
+// get new product
+router.get('/search/getNewProducts', getNewProducts);
+
+// get product count
+router.get('/search/getProductCount', getProductCount);
 
 export default router;

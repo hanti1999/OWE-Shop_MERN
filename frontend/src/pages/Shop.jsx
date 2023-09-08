@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import ReactPaginate from 'react-paginate';
+import React, { useState, useEffect } from 'react';
 
 import ProductCard from '../shared/ProductCard';
-
 import products from '../assets/data/products';
 
 import '../styles/shop.css';
 
 const Shop = () => {
-  return <PaginatedItems itemsPerPage={16} />;
-};
+  const [pageCount, setPageCount] = useState(0);
+  const [page, setPage] = useState(0);
 
-function Items({ currentItems }) {
+  useEffect(() => {
+    const pages = Math.ceil(5 / 4);
+    setPageCount(pages);
+  }, [page]);
+
   return (
     <>
       <section>
@@ -36,48 +38,27 @@ function Items({ currentItems }) {
       <section>
         <div className='container'>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-            {currentItems &&
-              currentItems?.map((item, index) => (
+            {products &&
+              products?.map((item, index) => (
                 <ProductCard products={item} key={index} />
               ))}
+          </div>
+
+          <div className='pagination'>
+            {[...Array(pageCount).keys()].map((number) => (
+              <span
+                className={page === number ? 'active__page' : ''}
+                key={number}
+                onClick={() => setPage(number)}
+              >
+                {number + 1}
+              </span>
+            ))}
           </div>
         </div>
       </section>
     </>
   );
-}
-
-function PaginatedItems({ itemsPerPage }) {
-  const [itemOffset, setItemOffset] = useState(0);
-
-  const endOffset = itemOffset + itemsPerPage;
-  const currentItems = products.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(products.length / itemsPerPage);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % products.length;
-    setItemOffset(newOffset);
-  };
-
-  return (
-    <>
-      <Items currentItems={currentItems} />
-      <section>
-        <div className='container'>
-          <ReactPaginate
-            breakLabel='...'
-            nextLabel='Tiếp >'
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
-            pageCount={pageCount}
-            previousLabel='< Trước'
-            renderOnZeroPageCount={null}
-            containerClassName='paginate__ul'
-          />
-        </div>
-      </section>
-    </>
-  );
-}
+};
 
 export default Shop;
