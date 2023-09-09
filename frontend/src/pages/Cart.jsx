@@ -103,6 +103,8 @@ const Tr = ({ item }) => {
 };
 
 const Form = () => {
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
   const [order, setOrder] = useState({
     userId: '01',
     userEmail: 'example@email.com',
@@ -110,13 +112,17 @@ const Form = () => {
     txtPhone: '096225259',
     txtAddress: 'Việt Nam, Trái Đất',
     txtNote: 'nhanh cai chan len',
+    cart: cartItems,
   });
 
   const validatePhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setOrder((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    setOrder((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
   };
 
   const handlePlaceOrder = (e) => {
