@@ -34,6 +34,11 @@ const connect = async () => {
 // middleware
 app.use(express.json());
 app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: 'https://oweshop.vercel.app/',
+  })
+);
 app.use(cookieParser());
 app.use('/api/v1/auth', authRoute);
 app.use('/api/v1/products', poductRoute);
