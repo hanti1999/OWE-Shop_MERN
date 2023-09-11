@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import ConvertVie from '../assets/data/ConvertVie';
 
 const ProductCard = ({ products }) => {
-  const { id, title, gender, price, sale, productImg } = products;
+  const { _id, title, gender, price, sale, productImg } = products;
   const salePrice = price * sale;
 
   return (
     <div className='shadow-md rounded hover:shadow-2xl transition-all overflow-hidden'>
       <Link
-        to={`/shop/${ConvertVie(title)}-${id}`}
+        to={`/shop/${ConvertVie(title)}-${_id}`}
         className='aspect-square block'
       >
         <img src={productImg} className='object-cover h-full w-full' alt='' />
@@ -22,7 +22,7 @@ const ProductCard = ({ products }) => {
             <i className='ri-heart-add-line text-2xl'></i>
           </span>
         </div>
-        <Link to={`/shop/${ConvertVie(title)}-${id}`}>
+        <Link to={`/shop/${ConvertVie(title)}-${_id}`}>
           <h4 className='font-semibold pb-4'>{title}</h4>
         </Link>
         <div className='flex md:items-end max-md:flex-col'>

@@ -4,8 +4,15 @@
 
 # Run
 
+- cd backend
+- npm i
+- npm run start-dev
+
+* split terminal
+
+- cd ..
 - cd frontend
-- npm install
+- npm i
 - npm run dev
 
 # Technology

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import '../styles/home.css';
@@ -16,7 +16,20 @@ import img3 from '../assets/img/shirt/tshirt4.jpg';
 import img4 from '../assets/img/shirt/tshirt5.jpg';
 import bottomBanner from '../assets/img/tshirtBanner.jpg';
 
+import useFetch from '../hooks/useFetch';
+import { BASE_URL } from '../utils/config.js';
+
 const Home = () => {
+  const {
+    data: popularProducts,
+    loading,
+    error,
+  } = useFetch(`${BASE_URL}/products/search/getPopularProducts`);
+
+  const { data: newProducts } = useFetch(
+    `${BASE_URL}/products/search/GetNewProducts`
+  );
+
   return (
     <>
       {/* Main banner */}
@@ -30,12 +43,17 @@ const Home = () => {
       <section>
         <div className='container'>
           <SectionTitle title={'Sản phẩm phổ biến'} />
+          {loading && (
+            <h4 className='animate-pulse text-2xl text-center'>Loading...</h4>
+          )}
           <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-            {products?.slice(0, 4).map((product, index) => (
-              <div key={index} className='mb-2'>
-                <ProductCard products={product} />
-              </div>
-            ))}
+            {!loading &&
+              !error &&
+              popularProducts?.slice(0, 8).map((product, index) => (
+                <div key={index} className='mb-2 '>
+                  <ProductCard products={product} />
+                </div>
+              ))}
           </div>
           <div className='w-full text-center mt-10'>
             <button className='secondary__btn'>
@@ -80,8 +98,11 @@ const Home = () => {
       <section>
         <div className='container'>
           <SectionTitle title={'Sản phẩm mới'} />
+          {loading && (
+            <h4 className='animate-pulse text-2xl text-center'>Loading...</h4>
+          )}
           <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-            {products?.slice(0, 8).map((product, index) => (
+            {newProducts?.slice(0, 8).map((product, index) => (
               <div key={index} className='mb-2'>
                 <ProductCard products={product} />
               </div>

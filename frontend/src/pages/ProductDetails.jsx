@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import products from '../assets/data/products';
 import ServiceList from '../services/ServiceList';
 import ProductList from '../shared/ProductList';
@@ -16,7 +16,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
 
   const product = products.find(
-    (product) => product.id === id.slice(-2, id.length)
+    (product) => product.id === id.slice(-24, id.length)
   );
 
   const { productImg, title, price, sale, gender, size, details } = product;

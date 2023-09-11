@@ -4,6 +4,8 @@ import './header.css';
 
 import { useSelector } from 'react-redux';
 
+import SearchBar from '../../shared/SearchBar';
+
 const nav__links = [
   {
     path: '/',
@@ -49,33 +51,13 @@ const Header = () => {
   return (
     <header className='header w-full h-20 leading-[80px]' ref={headerRef}>
       <div className='container relative'>
-        {/* Search bar ====== */}
-        <form
-          ref={searchRef}
-          id='form__search'
-          className='absolute left-0 right-0'
-        >
-          <input
-            type='text'
-            name='q'
-            className='w-full px-2 outline-none'
-            placeholder='Nhập từ khóa/mã cầm tìm'
-          />
-          <button type='submit'>
-            <i className='ri-search-line'></i>
-          </button>
-          <div className='cursor-pointer' onClick={searchToggle}>
-            <i className='ri-close-line'></i>
-          </div>
-        </form>
+        <SearchBar searchRef={searchRef} searchToggle={searchToggle} />
 
         <div className='flex items-center justify-between'>
-          {/* Logo ====== */}
           <Link to='/' className='logo'>
             <h1 className='md:text-6xl text-4xl'>OWE</h1>
           </Link>
 
-          {/* Menu ====== */}
           <ul className='hidden md:flex items-center gap-10 mb-0 pl-0'>
             {nav__links.map((item, index) => (
               <li className='nav__item' key={index}>
@@ -113,7 +95,7 @@ const Header = () => {
                 </Link>
               </button>
             </div>
-            {/* Mobile menu ====== */}
+
             <span className='mobile__menu md:hidden'>
               <i className='ri-menu-line'></i>
             </span>
