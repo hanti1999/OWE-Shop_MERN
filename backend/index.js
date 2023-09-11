@@ -36,7 +36,7 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.use(
   cors({
-    origin: 'https://oweshop.vercel.app/',
+    origin: 'https://oweshop.vercel.app',
   })
 );
 app.use(cookieParser());
