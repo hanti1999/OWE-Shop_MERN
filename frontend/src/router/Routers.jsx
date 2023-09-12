@@ -32,11 +32,11 @@ export const Routers = createBrowserRouter([
         element: <Shop />,
       },
       {
-        path: '/shop/:id',
+        path: 'shop/products/:id',
         element: <ProductDetails />,
       },
       {
-        path: '/shop/search',
+        path: 'shop/products/search',
         element: <SearchResultList />,
       },
       {

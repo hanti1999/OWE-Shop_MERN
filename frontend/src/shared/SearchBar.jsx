@@ -17,7 +17,9 @@ const SearchBar = ({ searchRef, searchToggle }) => {
 
     const result = await res.json();
 
-    navigate(`/shop/search?title=${inputTitle}`, { state: result.data });
+    navigate(`shop/products/search?title=${inputTitle}`, {
+      state: result.data,
+    });
   };
 
   return (

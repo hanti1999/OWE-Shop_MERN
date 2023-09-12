@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from 'react';
 
 import ProductCard from '../shared/ProductCard';
-import products from '../assets/data/products';
 
 import '../styles/shop.css';
+
+import useFetch from '../hooks/useFetch.js';
+import { BASE_URL } from '../utils/config.js';
 
 const Shop = () => {
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
 
+  const {
+    data: products,
+    loading,
+    error,
+  } = useFetch(`${BASE_URL}/products?page=${page}`);
+
+  const { data: productCount } = useFetch(
+    `${BASE_URL}/products/search/getProductCount`
+  );
+
   useEffect(() => {
-    const pages = Math.ceil(5 / 4);
+    const pages = Math.ceil(productCount / 8);
     setPageCount(pages);
-  }, [page]);
+    window.scrollTo(0, 0);
+  }, [page, productCount, products]);
 
   return (
     <>
@@ -36,26 +49,31 @@ const Shop = () => {
       </section>
 
       <section>
-        <div className='container'>
-          <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-            {products &&
-              products?.map((item, index) => (
-                <ProductCard products={item} key={index} />
-              ))}
-          </div>
+        {loading && (
+          <h4 className='animate-pulse text-2xl text-center'>Đang tải...</h4>
+        )}
+        {!loading && !error && (
+          <div className='container'>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
+              {products &&
+                products?.map((item, index) => (
+                  <ProductCard products={item} key={index} />
+                ))}
+            </div>
 
-          <div className='pagination'>
-            {[...Array(pageCount).keys()].map((number) => (
-              <span
-                className={page === number ? 'active__page' : ''}
-                key={number}
-                onClick={() => setPage(number)}
-              >
-                {number + 1}
-              </span>
-            ))}
+            <div className='pagination'>
+              {[...Array(pageCount).keys()].map((number) => (
+                <span
+                  className={page === number ? 'active__page' : ''}
+                  key={number}
+                  onClick={() => setPage(number)}
+                >
+                  {number + 1}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </section>
     </>
   );

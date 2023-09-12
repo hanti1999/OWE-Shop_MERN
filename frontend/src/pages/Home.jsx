@@ -9,7 +9,6 @@ import ProductCard from '../shared/ProductCard';
 import SliderBanner from '../components/SliderBanner/SliderBanner';
 import MasonryImages from '../components/Feedback-images/MasonryImages';
 
-import products from '../assets/data/products';
 import img1 from '../assets/img/shirt/tshirt2.jpg';
 import img2 from '../assets/img/shirt/tshirt3.jpg';
 import img3 from '../assets/img/shirt/tshirt4.jpg';
@@ -44,7 +43,7 @@ const Home = () => {
         <div className='container'>
           <SectionTitle title={'Sản phẩm phổ biến'} />
           {loading && (
-            <h4 className='animate-pulse text-2xl text-center'>Loading...</h4>
+            <h4 className='animate-pulse text-2xl text-center'>Đang tải...</h4>
           )}
           <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
             {!loading &&
