@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom';
-
 import App from '../App';
 import Home from '../pages/Home';
 import Shop from '../pages/Shop';
@@ -32,11 +31,11 @@ export const Routers = createBrowserRouter([
         element: <Shop />,
       },
       {
-        path: 'shop/products/:id',
+        path: '/shop/products/:id',
         element: <ProductDetails />,
       },
       {
-        path: 'shop/products/search',
+        path: '/shop/products/search',
         element: <SearchResultList />,
       },
       {

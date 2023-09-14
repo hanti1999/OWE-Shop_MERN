@@ -45,7 +45,7 @@ const Login = () => {
                   placeholder='Email...'
                   onChange={handleChange}
                   required
-                  className='block w-full rounded-md border py-1.5 px-2 shadow-sm sm:text-sm sm:leading-6'
+                  className='outline-secondary-color block w-full rounded-md border py-1.5 px-2 shadow-sm sm:text-sm sm:leading-6'
                 />
               </div>
             </div>
@@ -76,7 +76,7 @@ const Login = () => {
                   placeholder='Mật khẩu...'
                   onChange={handleChange}
                   required
-                  className='block w-full rounded-md border py-1.5 px-2 shadow-sm sm:text-sm sm:leading-6'
+                  className='outline-secondary-color block w-full rounded-md border py-1.5 px-2 shadow-sm sm:text-sm sm:leading-6'
                 />
               </div>
             </div>

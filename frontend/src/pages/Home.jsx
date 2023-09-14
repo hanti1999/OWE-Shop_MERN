@@ -1,22 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-
 import '../styles/home.css';
-
 import ServiceList from '../services/ServiceList';
 import SectionTitle from '../shared/SectionTitle';
 import ProductCard from '../shared/ProductCard';
 import SliderBanner from '../components/SliderBanner/SliderBanner';
 import MasonryImages from '../components/Feedback-images/MasonryImages';
-
 import img1 from '../assets/img/shirt/tshirt2.jpg';
 import img2 from '../assets/img/shirt/tshirt3.jpg';
 import img3 from '../assets/img/shirt/tshirt4.jpg';
 import img4 from '../assets/img/shirt/tshirt5.jpg';
 import bottomBanner from '../assets/img/tshirtBanner.jpg';
-
 import useFetch from '../hooks/useFetch';
-import { BASE_URL } from '../utils/config.js';
+import { BASE_URL } from '../utils/config';
 
 const Home = () => {
   const {
@@ -98,14 +94,16 @@ const Home = () => {
         <div className='container'>
           <SectionTitle title={'Sản phẩm mới'} />
           {loading && (
-            <h4 className='animate-pulse text-2xl text-center'>Loading...</h4>
+            <h4 className='animate-pulse text-2xl text-center'>Đang tải...</h4>
           )}
           <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-            {newProducts?.slice(0, 8).map((product, index) => (
-              <div key={index} className='mb-2'>
-                <ProductCard products={product} />
-              </div>
-            ))}
+            {!loading &&
+              !error &&
+              newProducts?.slice(0, 8).map((product, index) => (
+                <div key={index} className='mb-2'>
+                  <ProductCard products={product} />
+                </div>
+              ))}
           </div>
           <div className='w-full text-center mt-10'>
             <button className='secondary__btn'>

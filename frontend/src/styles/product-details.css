@@ -2,3 +2,15 @@
 .product__gallery img {
     @apply rounded max-md:mb-2
 }
+
+.rating__group span {
+    @apply text-lg flex items-center text-secondary-color cursor-pointer
+}
+
+.review__input {
+    @apply flex items-center justify-between w-full p-1 rounded-[50px] border border-secondary-color
+}
+
+.review__input input {
+    @apply w-full border-0 pl-1 outline-none
+}
