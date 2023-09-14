@@ -28,12 +28,12 @@ const ProductDetails = () => {
   return (
     <>
       <Details product={product} loading={loading} error={error} />
-      <Reviews reviews={reviews} />
       <Related
         relatedProducts={relatedProducts}
         loading={loading}
         error={error}
       />
+      <Reviews reviews={reviews} />
     </>
   );
 };
@@ -155,7 +155,10 @@ const Details = ({ product, loading, error }) => {
 
           <section>
             <div className='container'>
-              <div className='product__gallery grid grid-cols-1 md:grid-cols-2 md:gap-1'>
+              <h4 className=' border-b font-semibold text-lg md:text-2xl'>
+                Chi tiết sản phẩm
+              </h4>
+              <div className='grid grid-cols-1 md:grid-cols-2 md:gap-1 mt-4'>
                 <img src={productImg} alt='' />
                 <img src={productImg} alt='' />
                 <img src={productImg} alt='' />
@@ -172,22 +175,17 @@ const Details = ({ product, loading, error }) => {
 const Related = ({ relatedProducts, loading, error }) => {
   return (
     <>
-      {loading && (
-        <h4 className='animate-pulse text-2xl text-center'>Đang tải...</h4>
-      )}
       {!loading && !error && (
-        <>
-          <section>
-            <div className='container'>
-              <h3 className='font-bold text-lg md:text-2xl uppercase mb-4'>
-                Sản phẩm bạn có thể thích
-              </h3>
-              <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-                <ProductList data={relatedProducts} />
-              </div>
+        <section>
+          <div className='container'>
+            <h3 className='font-semibold text-lg md:text-2xl border-b'>
+              Sản phẩm bạn có thể thích
+            </h3>
+            <div className='grid grid-cols-2 md:grid-cols-4 gap-3 mt-4'>
+              <ProductList data={relatedProducts} />
             </div>
-          </section>
-        </>
+          </div>
+        </section>
       )}
     </>
   );
@@ -206,7 +204,7 @@ const Reviews = ({ reviews }) => {
     <>
       <section>
         <div className='container'>
-          <h4 className='font-semibold text-xl'>
+          <h4 className='font-semibold text-lg md:text-2xl border-b'>
             Đánh giá sản phẩm{' '}
             {reviews?.length === 0 ? (
               <span>(Chưa có đánh giá!)</span>
@@ -214,6 +212,7 @@ const Reviews = ({ reviews }) => {
               <span>({reviews?.length} đánh giá)</span>
             )}
           </h4>
+
           <form
             className='review__form mt-4'
             action=''
