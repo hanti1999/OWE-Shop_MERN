@@ -4,13 +4,6 @@
 
 # Run
 
-- cd backend
-- npm i
-- npm run start-dev
-
-* split terminal
-
-- cd ..
 - cd frontend
 - npm i
 - npm run dev

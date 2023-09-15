@@ -16,9 +16,13 @@ export const register = async (req, res) => {
     });
 
     await newUser.save();
-    res.status(200).json({ success: true, message: 'da tao thanh cong' });
+    res
+      .status(200)
+      .json({ success: true, message: 'Tạo tài khoản thành công!' });
   } catch (err) {
-    res.status(500).json({ success: false, message: 'loi, hay thu lai' });
+    res
+      .status(500)
+      .json({ success: false, message: 'Không thể tạo tài khoản', error: err });
   }
 };
 

@@ -8,6 +8,8 @@ import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
 import '../styles/product-details.css';
 
+import { toast } from 'react-toastify';
+
 const ProductDetails = () => {
   const { id } = useParams();
   const sliceId = id.slice(-24, id.length);
@@ -49,7 +51,7 @@ const Details = ({ product, loading, error }) => {
 
   const addToCart = () => {
     if (enterSize === '') {
-      alert('Bạn chưa chọn size!');
+      toast.error('Bạn chưa chọn size!');
     } else {
       dispatch(
         cartActions.addItem({
@@ -60,7 +62,7 @@ const Details = ({ product, loading, error }) => {
           productImg: productImg,
         })
       );
-      console.log('Thêm sp thành công!');
+      toast.success('Thêm sản phẩm thành công!');
     }
   };
 
@@ -197,6 +199,8 @@ const Reviews = ({ reviews }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
+    toast.success('Gửi đánh giá thành công!');
     const reviewText = reviewMsgRef.current.value;
   };
 

@@ -40,7 +40,7 @@ header i {
 }
 
 .menu__right button {
-    @apply cursor-default
+    @apply cursor-default px-3
 }
 
 .menu__right button i:hover {
@@ -49,4 +49,28 @@ header i {
 
 .cart__badge {
     @apply absolute text-white w-5 h-5 text-center leading-5 bg-secondary-color rounded-full left-1/2 bottom-3/4 font-semibold text-sm
+}
+
+.user__wrapper {
+    @apply relative px-3
+}
+
+.user__wrapper i {
+    @apply cursor-pointer
+}
+
+.user__wrapper:hover span {
+    @apply block
+}
+
+.user__wrapper span {
+    @apply hidden absolute top-full right-0 w-[250px] bg-white leading-loose border-t-2 border-secondary-color z-50 rounded overflow-hidden shadow-md
+}
+
+.user__wrapper span p {
+    @apply hover:text-white hover:bg-secondary-color cursor-default px-1
+}
+
+.user__wrapper span button {
+    @apply w-full text-left cursor-pointer hover:text-white hover:bg-secondary-color px-1
 }

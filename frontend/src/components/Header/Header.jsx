@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import './header.css';
 
 import { useSelector } from 'react-redux';
+import { AuthContext } from '../../context/AuthContext';
 
 import SearchBar from '../../shared/SearchBar';
+import { toast } from 'react-toastify';
 
 const nav__links = [
   {
@@ -24,6 +26,8 @@ const nav__links = [
 const Header = () => {
   const searchRef = useRef();
   const headerRef = useRef(null);
+  const navigate = useNavigate();
+  const { user, dispatch } = useContext(AuthContext);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const searchToggle = () => {
@@ -41,6 +45,12 @@ const Header = () => {
         headerRef.current.classList.remove('sticky__header');
       }
     });
+  };
+
+  const logout = () => {
+    dispatch({ type: 'LOGOUT' });
+    toast.success('Đăng xuất thành công!');
+    navigate('/');
   };
 
   useEffect(() => {
@@ -74,14 +84,9 @@ const Header = () => {
           </ul>
 
           <div className='menu__right flex items-center gap-6'>
-            <div className='flex items-center gap-6'>
+            <div className='flex items-center'>
               <button onClick={searchToggle}>
                 <i className='ri-search-line cursor-pointer'></i>
-              </button>
-              <button>
-                <Link to='/login'>
-                  <i className='ri-user-3-line'></i>
-                </Link>
               </button>
               <button>
                 <Link to='/wishlish'>
@@ -94,6 +99,23 @@ const Header = () => {
                   <span className='cart__badge'>{totalQuantity}</span>
                 </Link>
               </button>
+              {user ? (
+                <>
+                  <div className='user__wrapper'>
+                    <i className='ri-user-3-line'></i>
+                    <span>
+                      <p>{`Xin chào ${user.username}`}</p>
+                      <button onClick={logout}>Đăng xuất</button>
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <button>
+                  <Link to='/login'>
+                    <i className='ri-user-3-line'></i>
+                  </Link>
+                </button>
+              )}
             </div>
 
             <span className='mobile__menu md:hidden'>

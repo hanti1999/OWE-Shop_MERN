@@ -1,19 +1,57 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
+
+import { AuthContext } from '../context/AuthContext';
+import { BASE_URL } from '../utils/config';
+
+import { toast } from 'react-toastify';
+import { Button } from 'antd';
 
 const Login = () => {
+  const [loading, setLoading] = useState(false);
+
   const [loginInfo, setLoginInfo] = useState({
-    username: undefined,
     email: undefined,
     password: undefined,
   });
+
+  const { dispatch } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setLoginInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+
+    setLoading(true);
+    dispatch({ type: 'LOGIN_START' });
+
+    try {
+      const res = await fetch(`${BASE_URL}/auth/login`, {
+        method: 'post',
+        headers: {
+          'content-type': 'application/json',
+        },
+        loginInfo: 'include',
+        body: JSON.stringify(loginInfo),
+      });
+
+      const result = await res.json();
+      if (res.ok) {
+        dispatch({ type: 'LOGIN_SUCCESS', payload: result.data });
+        toast.success('Đăng nhập thành công!');
+        navigate('/');
+      } else {
+        toast.error('Tài khoản hoặc mật khẩu sai! vui lòng thử lại');
+      }
+      setLoading(false);
+    } catch (err) {
+      toast.error('Tài khoản hoặc mật khẩu sai! vui lòng thử lại');
+      dispatch({ type: 'LOGIN_FAILURE', payload: err.message });
+    }
   };
 
   return (
@@ -82,13 +120,15 @@ const Login = () => {
             </div>
 
             <div>
-              <button
+              <Button
                 onClick={handleLogin}
-                className='primary__btn w-full !rounded-md'
+                className=' bg-secondary-color w-full'
                 type='submit'
+                size='large'
+                loading={loading}
               >
-                <span>Đăng nhập</span>
-              </button>
+                <span className='text-white hover:text-inherit'>Đăng nhập</span>
+              </Button>
             </div>
           </form>
 

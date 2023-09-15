@@ -1,18 +1,52 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+
+import { AuthContext } from '../context/AuthContext';
+import { BASE_URL } from '../utils/config';
+
+import { toast } from 'react-toastify';
+import { Button } from 'antd';
 
 const Register = () => {
-  const [loginInfo, setLoginInfo] = useState({
+  const [loading, setLoading] = useState(false);
+
+  const [registerInfo, setRegisterInfo] = useState({
+    username: undefined,
     email: undefined,
     password: undefined,
   });
 
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
-    setLoginInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    setRegisterInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleLogin = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+    try {
+      setLoading(true);
+      const res = await fetch(`${BASE_URL}/auth/register`, {
+        method: 'post',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(registerInfo),
+      });
+
+      if (res.ok) {
+        dispatch({ type: 'REGISTER_SUCCESS' });
+        toast.success('Tạo tài khoản thành công');
+        navigate('/login');
+      } else {
+        toast.error('Đăng ký không thành công! vui lòng thử lại');
+      }
+      setLoading(false);
+    } catch (err) {
+      toast.error('Đăng ký không thành công! vui lòng thử lại');
+      console.alert(err.message);
+    }
   };
 
   return (
@@ -92,13 +126,17 @@ const Register = () => {
             </div>
 
             <div>
-              <button
-                onClick={handleLogin}
-                className='primary__btn w-full !rounded-md'
+              <Button
+                onClick={handleRegister}
+                className='w-full bg-secondary-color'
                 type='submit'
+                size='large'
+                loading={loading}
               >
-                <span>Tạo tài khoản</span>
-              </button>
+                <span className='text-white hover:text-inherit'>
+                  Tạo tài khoản
+                </span>
+              </Button>
             </div>
           </form>
 
