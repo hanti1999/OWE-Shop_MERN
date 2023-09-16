@@ -2,30 +2,29 @@ import React, { useState, useEffect } from 'react';
 
 import ProductCard from '../shared/ProductCard';
 
-import '../styles/shop.css';
-
 import useFetch from '../hooks/useFetch.js';
 import { BASE_URL } from '../utils/config.js';
 
+import { Pagination } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
 const Shop = () => {
-  const [pageCount, setPageCount] = useState(0);
-  const [page, setPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const {
     data: products,
     loading,
     error,
-  } = useFetch(`${BASE_URL}/products?page=${page}`);
+  } = useFetch(`${BASE_URL}/products?page=${currentPage - 1}`);
 
   const { data: productCount } = useFetch(
     `${BASE_URL}/products/search/getProductCount`
   );
 
-  useEffect(() => {
-    const pages = Math.ceil(productCount / 8);
-    setPageCount(pages);
+  const onChange = (page) => {
     window.scrollTo(0, 0);
-  }, [page, productCount, products]);
+    setCurrentPage(page);
+  };
 
   return (
     <>
@@ -50,7 +49,9 @@ const Shop = () => {
 
       <section>
         {loading && (
-          <h4 className='animate-pulse text-2xl text-center'>Đang tải...</h4>
+          <h4 className='animate-pulse text-2xl text-center'>
+            <LoadingOutlined /> Đang tải...
+          </h4>
         )}
         {!loading && !error && (
           <div className='container'>
@@ -61,16 +62,13 @@ const Shop = () => {
                 ))}
             </div>
 
-            <div className='pagination'>
-              {[...Array(pageCount).keys()].map((number) => (
-                <span
-                  className={page === number ? 'active__page' : ''}
-                  key={number}
-                  onClick={() => setPage(number)}
-                >
-                  {number + 1}
-                </span>
-              ))}
+            <div className='pagination mt-4'>
+              <Pagination
+                current={currentPage}
+                pageSize={8}
+                total={productCount}
+                onChange={onChange}
+              />
             </div>
           </div>
         )}

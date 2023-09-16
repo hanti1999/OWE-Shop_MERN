@@ -7,7 +7,7 @@ import { cartActions } from '../redux/slices/cartSlice';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
 import '../styles/product-details.css';
-
+import { LoadingOutlined } from '@ant-design/icons';
 import { toast } from 'react-toastify';
 
 const ProductDetails = () => {
@@ -73,7 +73,9 @@ const Details = ({ product, loading, error }) => {
   return (
     <>
       {loading && (
-        <h4 className='animate-pulse text-2xl text-center'>Đang tải...</h4>
+        <h4 className='animate-pulse text-2xl text-center'>
+          <LoadingOutlined /> Đang tải...
+        </h4>
       )}
       {!loading && !error && (
         <>

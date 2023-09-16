@@ -1,38 +1,11 @@
 import React from 'react';
-import Slider from 'react-slick';
+import { Carousel } from 'antd';
 import { Link } from 'react-router-dom';
 import img from '../../assets/img/shirt/tshirt1.png';
 
 const SliderBanner = () => {
-  const settings = {
-    dots: true,
-    infinity: true,
-    autoplay: true,
-    speed: 1000,
-    swipeToSlide: true,
-    autoplaySpedd: 3000,
-    slidesToShow: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinity: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
   return (
-    <Slider {...settings}>
+    <Carousel autoplay>
       <div>
         <div className='grid grid-cols-2 gap-10'>
           <div className='col-span-2 md:col-span-1'>
@@ -64,6 +37,7 @@ const SliderBanner = () => {
           </div>
         </div>
       </div>
+
       <div>
         <div className='grid grid-cols-2 gap-10'>
           <div className='col-span-2 md:col-span-1'>
@@ -95,7 +69,7 @@ const SliderBanner = () => {
           </div>
         </div>
       </div>
-    </Slider>
+    </Carousel>
   );
 };
 

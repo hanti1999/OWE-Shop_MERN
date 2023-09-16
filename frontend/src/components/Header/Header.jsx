@@ -8,6 +8,9 @@ import { AuthContext } from '../../context/AuthContext';
 import SearchBar from '../../shared/SearchBar';
 import { toast } from 'react-toastify';
 
+import { UserOutlined } from '@ant-design/icons';
+import { Badge } from 'antd';
+
 const nav__links = [
   {
     path: '/',
@@ -94,15 +97,16 @@ const Header = () => {
                 </Link>
               </button>
               <button>
-                <Link className='relative' to='/cart'>
-                  <i className='ri-shopping-cart-2-line'></i>
-                  <span className='cart__badge'>{totalQuantity}</span>
-                </Link>
+                <Badge count={totalQuantity}>
+                  <Link className='relative' to='/cart'>
+                    <i className='ri-shopping-cart-2-line'></i>
+                  </Link>
+                </Badge>
               </button>
               {user ? (
                 <>
                   <div className='user__wrapper'>
-                    <i className='ri-user-3-line'></i>
+                    <i className='ri-user-follow-line'></i>
                     <span>
                       <p>{`Xin chào ${user.username}`}</p>
                       <button onClick={logout}>Đăng xuất</button>
@@ -112,7 +116,7 @@ const Header = () => {
               ) : (
                 <button>
                   <Link to='/login'>
-                    <i className='ri-user-3-line'></i>
+                    <i className='ri-user-line'></i>
                   </Link>
                 </button>
               )}

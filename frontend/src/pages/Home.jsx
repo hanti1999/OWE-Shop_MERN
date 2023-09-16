@@ -13,6 +13,7 @@ import img4 from '../assets/img/shirt/tshirt5.jpg';
 import bottomBanner from '../assets/img/tshirtBanner.jpg';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const Home = () => {
   const {
@@ -39,7 +40,9 @@ const Home = () => {
         <div className='container'>
           <SectionTitle title={'Sản phẩm phổ biến'} />
           {loading && (
-            <h4 className='animate-pulse text-2xl text-center'>Đang tải...</h4>
+            <h4 className='animate-pulse text-2xl text-center'>
+              <LoadingOutlined /> Đang tải...
+            </h4>
           )}
           <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
             {!loading &&
@@ -94,7 +97,9 @@ const Home = () => {
         <div className='container'>
           <SectionTitle title={'Sản phẩm mới'} />
           {loading && (
-            <h4 className='animate-pulse text-2xl text-center'>Đang tải...</h4>
+            <h4 className='animate-pulse text-2xl text-center'>
+              <LoadingOutlined /> Đang tải...
+            </h4>
           )}
           <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
             {!loading &&
