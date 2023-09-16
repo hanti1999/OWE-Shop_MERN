@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Rate, Select } from 'antd';
+
 import ServiceList from '../services/ServiceList';
 import ProductList from '../shared/ProductList';
 import { cartActions } from '../redux/slices/cartSlice';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
 import '../styles/product-details.css';
-import { LoadingOutlined } from '@ant-design/icons';
-import { toast } from 'react-toastify';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -41,7 +43,8 @@ const ProductDetails = () => {
 };
 
 const Details = ({ product, loading, error }) => {
-  const [enterSize, setEnterSize] = useState('');
+  const [selectedSize, setSelectedSize] = useState('');
+  const [sizeState, setSizeState] = useState('');
 
   const dispatch = useDispatch();
 
@@ -49,20 +52,26 @@ const Details = ({ product, loading, error }) => {
     product;
   const newPrice = Number(price) * Number(sale);
 
+  const onSelectSize = (e) => {
+    setSelectedSize(e);
+  };
+
   const addToCart = () => {
-    if (enterSize === '') {
+    if (selectedSize === '') {
+      setSizeState('error');
       toast.error('Bạn chưa chọn size!');
     } else {
       dispatch(
         cartActions.addItem({
           id: _id,
           title: title,
-          size: enterSize,
+          size: selectedSize,
           price: newPrice,
           productImg: productImg,
         })
       );
-      toast.success('Thêm sản phẩm thành công!');
+      setSizeState('');
+      toast.success('Đã thêm sản phẩm vào giỏ hàng!');
     }
   };
 
@@ -112,18 +121,16 @@ const Details = ({ product, loading, error }) => {
                   <div className=' mt-3 flex max-md:flex-col justify-between'>
                     <div>
                       Kích thước áo:
-                      <select
-                        className='border rounded-lg px-1 ml-1'
-                        onChange={(e) => setEnterSize(e.target.value)}
-                        value={enterSize}
-                      >
-                        <option>Chọn size</option>
-                        {size?.map((size, index) => (
-                          <option key={index} value={size}>
-                            {size}
-                          </option>
-                        ))}
-                      </select>
+                      <Select
+                        className=' w-20 pl-1'
+                        defaultValue=''
+                        status={sizeState}
+                        onChange={onSelectSize}
+                        options={size?.map((s) => ({
+                          value: s,
+                          label: s,
+                        }))}
+                      />
                     </div>
                     <a className=' text-blue-500 underline' href='#'>
                       Hướng dẫn chọn size
@@ -224,22 +231,8 @@ const Reviews = ({ reviews }) => {
             action=''
             onSubmit={submitHandler}
           >
-            <div className='rating__group flex items-center gap-2 mb-2'>
-              <span onClick={() => setRating(1)}>
-                1 <i className='ri-star-s-fill'></i>
-              </span>
-              <span onClick={() => setRating(2)}>
-                2 <i className='ri-star-s-fill'></i>
-              </span>
-              <span onClick={() => setRating(3)}>
-                3 <i className='ri-star-s-fill'></i>
-              </span>
-              <span onClick={() => setRating(4)}>
-                4 <i className='ri-star-s-fill'></i>
-              </span>
-              <span onClick={() => setRating(5)}>
-                5 <i className='ri-star-s-fill'></i>
-              </span>
+            <div className='mb-2'>
+              <Rate onChange={(e) => setRating(e)} />
             </div>
 
             <div className='review__input'>

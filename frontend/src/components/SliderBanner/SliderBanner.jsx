@@ -19,10 +19,10 @@ const SliderBanner = () => {
               <h1 className='my-8 text-3xl md:text-4xl font-bold uppercase'>
                 áo thun overwhelmet
               </h1>
-              <p className='italic pb-1'>
+              <p className='italic pb-1 text-base'>
                 Trời thì nóng nhưng em chẳng sợ cóng!
               </p>
-              <p>
+              <p className='text-base'>
                 Siêu phẩm mùa hè: áo thun 100% cotton, co dãn 2 chiều, bo cổ dày
                 dặn, hình may sắc nét
               </p>
@@ -51,10 +51,10 @@ const SliderBanner = () => {
               <h1 className='my-8 text-3xl md:text-4xl font-bold uppercase'>
                 áo thun overwhelmet
               </h1>
-              <p className='italic pb-1'>
+              <p className='italic pb-1 text-base'>
                 Trời thì nóng nhưng em chẳng sợ cóng!
               </p>
-              <p>
+              <p className='text-base'>
                 Siêu phẩm mùa hè: áo thun 100% cotton, co dãn 2 chiều, bo cổ dày
                 dặn, hình may sắc nét
               </p>

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import ProductCard from '../shared/ProductCard';
 
 import useFetch from '../hooks/useFetch.js';
 import { BASE_URL } from '../utils/config.js';
 
-import { Pagination } from 'antd';
+import { Pagination, Select } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 const Shop = () => {
@@ -21,28 +21,71 @@ const Shop = () => {
     `${BASE_URL}/products/search/getProductCount`
   );
 
-  const onChange = (page) => {
+  const onPageChange = (page) => {
     window.scrollTo(0, 0);
     setCurrentPage(page);
   };
+
+  const onCategoryChange = (e) => {};
+
+  const onSortChange = (e) => {};
 
   return (
     <>
       <section>
         <div className='container'>
           <div className='flex gap-3 items-center'>
-            <h1 className='font-semibold text-2xl'>Áo nam</h1>
-            <select className='border px-2 py-3 rounded-3xl' name='' id=''>
-              <option>Danh mục</option>
-              <option value=''>Áo thun form rộng</option>
-              <option value=''>Áo thun form tiêu chuẩn</option>
-            </select>
-            <select className='border px-2 py-3 rounded-3xl' name='' id=''>
-              <option value=''>Mới nhất</option>
-              <option value=''>Bán chạy</option>
-              <option value=''>Giá từ thấp đến cao</option>
-              <option value=''>Giá từ cao đến thấp</option>
-            </select>
+            <h1 className='font-semibold text-2xl'>Sản phẩm</h1>
+            <Select
+              defaultValue=''
+              className=' w-[200px]'
+              onChange={onCategoryChange}
+              options={[
+                {
+                  value: '',
+                  label: 'Danh mục',
+                },
+                {
+                  value: 'ao-thun-form-rong',
+                  label: 'Áo thun form rộng',
+                },
+                {
+                  value: 'ao-thun-form-tieu-chuan',
+                  label: 'Áo thun form tiêu chuẩn',
+                },
+                {
+                  value: 'ao-so-mi-tieu-chuan',
+                  label: 'Áo sơ mi form tiêu chuẩn',
+                },
+                {
+                  value: 'ao-so-mi-form-rong',
+                  label: 'Áo sơ mi form rộng',
+                },
+              ]}
+            />
+            <Select
+              defaultValue='moi-nhat'
+              className=' w-[200px]'
+              onChange={onSortChange}
+              options={[
+                {
+                  value: 'moi-nhat',
+                  label: 'Mới nhất',
+                },
+                {
+                  value: 'ban-chay',
+                  label: 'Bán chạy',
+                },
+                {
+                  value: 'gia-tu-thap-den-cao',
+                  label: 'Giá từ thấp đến cao',
+                },
+                {
+                  value: 'gia-cao-thap-den-thap',
+                  label: 'Giá từ cao đến thấp',
+                },
+              ]}
+            />
           </div>
         </div>
       </section>
@@ -67,7 +110,7 @@ const Shop = () => {
                 current={currentPage}
                 pageSize={8}
                 total={productCount}
-                onChange={onChange}
+                onChange={onPageChange}
               />
             </div>
           </div>

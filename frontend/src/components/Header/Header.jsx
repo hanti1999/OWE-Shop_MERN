@@ -7,9 +7,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 import SearchBar from '../../shared/SearchBar';
 import { toast } from 'react-toastify';
-
-import { UserOutlined } from '@ant-design/icons';
-import { Badge } from 'antd';
+import { Badge, Popover } from 'antd';
 
 const nav__links = [
   {
@@ -97,22 +95,33 @@ const Header = () => {
                 </Link>
               </button>
               <button>
-                <Badge count={totalQuantity}>
-                  <Link className='relative' to='/cart'>
+                <Badge
+                  style={{ backgroundColor: '#faa935' }}
+                  count={totalQuantity}
+                >
+                  <Link to='/cart'>
                     <i className='ri-shopping-cart-2-line'></i>
                   </Link>
                 </Badge>
               </button>
               {user ? (
-                <>
-                  <div className='user__wrapper'>
-                    <i className='ri-user-follow-line'></i>
-                    <span>
+                <Popover
+                  content={
+                    <div className='text-base'>
                       <p>{`Xin chào ${user.username}`}</p>
-                      <button onClick={logout}>Đăng xuất</button>
-                    </span>
-                  </div>
-                </>
+                      <button
+                        className=' hover:text-secondary-color'
+                        onClick={logout}
+                      >
+                        Đăng xuất
+                      </button>
+                    </div>
+                  }
+                  trigger='click'
+                  placement='bottom'
+                >
+                  <i className='ri-user-follow-line px-3 cursor-pointer'></i>
+                </Popover>
               ) : (
                 <button>
                   <Link to='/login'>

@@ -4,8 +4,8 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { BASE_URL } from '../utils/config';
 
-import { toast } from 'react-toastify';
 import { Button } from 'antd';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -45,11 +45,11 @@ const Login = () => {
         toast.success('Đăng nhập thành công!');
         navigate('/');
       } else {
-        toast.error('Tài khoản hoặc mật khẩu sai! vui lòng thử lại');
+        toast.error('Tài khoản hoặc mật khẩu sai!');
       }
       setLoading(false);
     } catch (err) {
-      toast.error('Tài khoản hoặc mật khẩu sai! vui lòng thử lại');
+      toast.error('Tài khoản hoặc mật khẩu sai!');
       dispatch({ type: 'LOGIN_FAILURE', payload: err.message });
     }
   };
@@ -123,7 +123,6 @@ const Login = () => {
               <Button
                 onClick={handleLogin}
                 className=' bg-secondary-color w-full'
-                type='submit'
                 size='large'
                 loading={loading}
               >

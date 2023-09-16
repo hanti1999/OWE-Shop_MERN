@@ -129,7 +129,6 @@ const Register = () => {
               <Button
                 onClick={handleRegister}
                 className='w-full bg-secondary-color'
-                type='submit'
                 size='large'
                 loading={loading}
               >

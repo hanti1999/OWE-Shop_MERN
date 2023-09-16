@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Divider } from 'antd';
+
 import '../styles/home.css';
-import ServiceList from '../services/ServiceList';
 import SectionTitle from '../shared/SectionTitle';
 import ProductCard from '../shared/ProductCard';
 import SliderBanner from '../components/SliderBanner/SliderBanner';
@@ -13,7 +15,6 @@ import img4 from '../assets/img/shirt/tshirt5.jpg';
 import bottomBanner from '../assets/img/tshirtBanner.jpg';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
-import { LoadingOutlined } from '@ant-design/icons';
 
 const Home = () => {
   const {
@@ -153,15 +154,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Service */}
-      {/* <section className='services'>
-        <div className='container'>
-          <div className='grid md:grid-cols-4 grid-cols-2 gap-4 md:gap-6'>
-            <ServiceList />
-          </div>
-        </div>
-      </section> */}
     </>
   );
 };
