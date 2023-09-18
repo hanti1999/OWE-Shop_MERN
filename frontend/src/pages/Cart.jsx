@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import '../styles/cart.css';
-
-import { cartActions } from '../redux/slices/cartSlice';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { cartActions } from '../redux/slices/cartSlice';
+import { BASE_URL } from '../utils/config';
+import '../styles/cart.css';
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);

@@ -23,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
+          pauseOnFocusLoss={false}
           closeOnClick
           rtl={false}
           pauseOnHover={false}

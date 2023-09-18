@@ -64,7 +64,7 @@ ul {
 }
 
 .secondary__btn a {
-  @apply block px-6 py-2 font-medium transition-all
+  @apply block px-6 py-2 transition-all text-lg
 }
 
 .secondary__btn a:hover {

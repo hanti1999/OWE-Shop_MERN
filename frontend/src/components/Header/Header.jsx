@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import './header.css';
-
-import { useSelector } from 'react-redux';
-import { AuthContext } from '../../context/AuthContext';
-
-import SearchBar from '../../shared/SearchBar';
 import { toast } from 'react-toastify';
 import { Badge, Popover } from 'antd';
+import { useSelector } from 'react-redux';
+
+import { AuthContext } from '../../context/AuthContext';
+import SearchBar from '../../shared/SearchBar';
+import './header.css';
 
 const nav__links = [
   {
@@ -16,7 +15,7 @@ const nav__links = [
   },
   {
     path: '/shop',
-    display: 'SẢN PHẨM MỚI',
+    display: 'SẢN PHẨM',
   },
   {
     path: '/support',

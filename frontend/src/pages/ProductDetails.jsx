@@ -1,15 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { LoadingOutlined } from '@ant-design/icons';
-import { Rate, Select } from 'antd';
+import { Rate, Select, Image, Button } from 'antd';
 
 import ServiceList from '../services/ServiceList';
 import ProductList from '../shared/ProductList';
 import { cartActions } from '../redux/slices/cartSlice';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
+import { AuthContext } from '../context/AuthContext';
 import '../styles/product-details.css';
 
 const ProductDetails = () => {
@@ -37,7 +38,7 @@ const ProductDetails = () => {
         loading={loading}
         error={error}
       />
-      <Reviews reviews={reviews} />
+      <Reviews reviews={reviews} id={sliceId} />
     </>
   );
 };
@@ -48,8 +49,18 @@ const Details = ({ product, loading, error }) => {
 
   const dispatch = useDispatch();
 
-  const { productImg, title, price, sale, gender, size, details, _id } =
-    product;
+  const {
+    productImg,
+    title,
+    price,
+    sale,
+    gender,
+    size,
+    details,
+    _id,
+    gallery,
+  } = product;
+
   const newPrice = Number(price) * Number(sale);
 
   const onSelectSize = (e) => {
@@ -91,9 +102,7 @@ const Details = ({ product, loading, error }) => {
           <section>
             <div className='container'>
               <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
-                <div className='product__img'>
-                  <img src={productImg} alt='' />
-                </div>
+                <Image src={productImg} />
 
                 <div className='product__info mt-3 md:mt-0'>
                   <h2 className='font-semibold text-2xl md:text-3xl'>
@@ -132,7 +141,11 @@ const Details = ({ product, loading, error }) => {
                         }))}
                       />
                     </div>
-                    <a className=' text-blue-500 underline' href='#'>
+                    <a
+                      className=' text-blue-500 underline'
+                      target='_blank'
+                      href='#'
+                    >
                       Hướng dẫn chọn size
                     </a>
                   </div>
@@ -169,11 +182,18 @@ const Details = ({ product, loading, error }) => {
               <h4 className=' border-b font-semibold text-lg md:text-2xl'>
                 Chi tiết sản phẩm
               </h4>
+
               <div className='grid grid-cols-1 md:grid-cols-2 md:gap-1 mt-4'>
-                <img src={productImg} alt='' />
-                <img src={productImg} alt='' />
-                <img src={productImg} alt='' />
-                <img src={productImg} alt='' />
+                {gallery === undefined ? (
+                  <>
+                    <img src={productImg} alt='' />
+                    <img src={productImg} alt='' />
+                  </>
+                ) : (
+                  gallery.map((glr, index) => (
+                    <img key={index} src={glr} alt='' />
+                  ))
+                )}
               </div>
             </div>
           </section>
@@ -202,15 +222,49 @@ const Related = ({ relatedProducts, loading, error }) => {
   );
 };
 
-const Reviews = ({ reviews }) => {
+const Reviews = ({ reviews, id }) => {
   const reviewMsgRef = useRef();
   const [rating, setRating] = useState(null);
+  const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-
-    toast.success('Gửi đánh giá thành công!');
+    setLoading(true);
     const reviewText = reviewMsgRef.current.value;
+
+    try {
+      if (!user || user === undefined || user === null) {
+        toast.error('Bạn chưa đăng nhập!');
+      }
+
+      const reviewObj = {
+        username: user?.username,
+        reviewText,
+        rating: rating,
+      };
+
+      const res = await fetch(`${BASE_URL}/review/${id}`, {
+        method: 'post',
+        headers: {
+          'content-type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(reviewObj),
+      });
+
+      const result = await res.json();
+      if (!res.ok) {
+        setLoading(false);
+        toast.error(result.message);
+      } else if (res.ok) {
+        setLoading(false);
+        toast.success('Gửi đánh giá thành công!');
+      }
+    } catch (err) {
+      setLoading(false);
+      toast.error(err.message);
+    }
   };
 
   return (
@@ -220,17 +274,13 @@ const Reviews = ({ reviews }) => {
           <h4 className='font-semibold text-lg md:text-2xl border-b'>
             Đánh giá sản phẩm{' '}
             {reviews?.length === 0 ? (
-              <span>(Chưa có đánh giá!)</span>
+              <span>(Chưa có đánh giá)</span>
             ) : (
               <span>({reviews?.length} đánh giá)</span>
             )}
           </h4>
 
-          <form
-            className='review__form mt-4'
-            action=''
-            onSubmit={submitHandler}
-          >
+          <form className='review__form mt-4' action=''>
             <div className='mb-2'>
               <Rate onChange={(e) => setRating(e)} />
             </div>
@@ -242,9 +292,14 @@ const Reviews = ({ reviews }) => {
                 placeholder='Chia sẻ cảm nghĩ của bạn...'
                 required
               />
-              <button className='primary__btn' type='submit'>
-                <span>Gửi</span>
-              </button>
+              <Button
+                loading={loading}
+                onClick={submitHandler}
+                size='large'
+                className=' bg-secondary-color'
+              >
+                Gửi
+              </Button>
             </div>
           </form>
 
@@ -262,7 +317,7 @@ const Reviews = ({ reviews }) => {
                   </span>
                   <h5 className=' font-semibold'>{review.username}</h5>
                   <p className=' text-gray-400 italic mt-1 mb-2'>
-                    {review.createAt}
+                    {new Date(review.createdAt).toLocaleDateString()}
                   </p>
                   <h6 className=' font-medium'>{review.reviewText}</h6>
                 </div>

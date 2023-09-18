@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LoadingOutlined } from '@ant-design/icons';
-import { Divider } from 'antd';
 
 import '../styles/home.css';
 import SectionTitle from '../shared/SectionTitle';

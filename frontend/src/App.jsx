@@ -1,6 +1,6 @@
 import './App.css';
 import Layout from './components/Layout/Layout';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, FloatButton } from 'antd';
 
 function App() {
   return (
