@@ -35,7 +35,11 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-
+    gallery: [
+      {
+        type: String,
+      },
+    ],
     size: [
       {
         type: String,
