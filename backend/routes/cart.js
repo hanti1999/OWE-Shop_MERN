@@ -8,8 +8,8 @@ import {
 
 const router = express.Router();
 
-router.post('/', verifyUser, createCart);
-router.get('/:id', verifyUser, getCart);
+router.post('/', createCart);
+router.get('/:id', getCart);
 router.get('/', verifyAdmin, getAllCart);
 
 export default router;
