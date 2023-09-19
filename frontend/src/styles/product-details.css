@@ -7,7 +7,7 @@ img {
 }
 
 .review__input {
-    @apply flex items-center justify-between w-full p-1 rounded-lg border border-secondary-color
+    @apply flex items-center justify-between w-full p-1 rounded-[50px] border border-secondary-color
 }
 
 .review__input input {

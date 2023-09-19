@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { Button } from 'antd';
+import { toast } from 'react-toastify';
 
 import { cartActions } from '../redux/slices/cartSlice';
 import { BASE_URL } from '../utils/config';
+import { AuthContext } from '../context/AuthContext';
 import '../styles/cart.css';
 
 const Cart = () => {
@@ -104,19 +107,20 @@ const Tr = ({ item }) => {
 
 const Form = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const validatePhoneNumber = /(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/;
 
   const [order, setOrder] = useState({
-    userId: '01',
-    userEmail: 'example@email.com',
-    txtCustomerName: 'Yenny',
-    txtPhone: '096225259',
-    txtAddress: 'Việt Nam, Trái Đất',
-    txtNote: 'nhanh cai chan len',
+    userId: user?._id,
+    userEmail: user?.email,
+    txtCustomerName: null,
+    txtPhone: null,
+    txtAddress: null,
+    txtNote: null,
     cart: cartItems,
   });
-
-  const validatePhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setOrder((prev) => ({
@@ -125,14 +129,42 @@ const Form = () => {
     }));
   };
 
-  const handlePlaceOrder = (e) => {
+  const handlePlaceOrder = async (e) => {
     e.preventDefault();
-    navigate('/thank-you');
+    setLoading(true);
+
+    try {
+      if (validatePhoneNumber.test(txtPhone.value) == false) {
+        toast.error('Số điện thoại không hợp lệ!');
+        setLoading(false);
+      } else {
+        const res = await fetch(`${BASE_URL}/cart`, {
+          method: 'post',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(order),
+        });
+
+        const result = await res.json();
+
+        if (!res.ok) {
+          toast.error(result.message);
+          setLoading(false);
+        } else if (res.ok) {
+          setLoading(false);
+          navigate('/thank-you');
+        }
+      }
+    } catch (err) {
+      toast.error(err.message);
+      setLoading(false);
+    }
   };
 
   return (
     <>
-      <form action='' method='POST' onSubmit={handlePlaceOrder}>
+      <form action='' method=''>
         <div className='form-group'>
           <label htmlFor='txtCustomerName'>Tên</label>
           <input
@@ -181,15 +213,25 @@ const Form = () => {
           />
         </div>
       </form>
-      <button
-        className='primary__btn bg-secondary-color w-full mt-4'
+      <Button
         onClick={handlePlaceOrder}
+        className='bg-secondary-color w-full mt-4'
+        shape='round'
+        size='large'
+        loading={loading}
       >
-        <span>Đặt hàng</span>
-      </button>
-      <button className='secondary__btn border-secondary-color w-full mt-6'>
-        <Link to='/'>Tiếp tục mua sắm</Link>
-      </button>
+        <span className='text-lg text-white'>Đặt hàng</span>
+      </Button>
+
+      <Button
+        className='border-secondary-color w-full mt-4'
+        shape='round'
+        size='large'
+      >
+        <Link className='text-lg' to='/'>
+          Tiếp tục mua sắm
+        </Link>
+      </Button>
     </>
   );
 };

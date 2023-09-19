@@ -29,3 +29,8 @@ tbody button {
 .form-group .form-control {
     @apply block w-full border rounded px-3 py-2
 }
+
+.form-group textarea,
+.form-group input {
+    @apply outline-secondary-color
+}

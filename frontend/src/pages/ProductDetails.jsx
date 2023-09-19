@@ -184,16 +184,9 @@ const Details = ({ product, loading, error }) => {
               </h4>
 
               <div className='grid grid-cols-1 md:grid-cols-2 md:gap-1 mt-4'>
-                {gallery === undefined ? (
-                  <>
-                    <img src={productImg} alt='' />
-                    <img src={productImg} alt='' />
-                  </>
-                ) : (
-                  gallery.map((glr, index) => (
-                    <img key={index} src={glr} alt='' />
-                  ))
-                )}
+                {gallery?.map((glr, index) => (
+                  <img key={index} src={glr} alt='' />
+                ))}
               </div>
             </div>
           </section>
@@ -223,13 +216,12 @@ const Related = ({ relatedProducts, loading, error }) => {
 };
 
 const Reviews = ({ reviews, id }) => {
-  const reviewMsgRef = useRef();
   const [rating, setRating] = useState(null);
-  const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const reviewMsgRef = useRef();
+  const { user } = useContext(AuthContext);
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
+  const submitHandler = async () => {
     setLoading(true);
     const reviewText = reviewMsgRef.current.value;
 
@@ -254,6 +246,7 @@ const Reviews = ({ reviews, id }) => {
       });
 
       const result = await res.json();
+
       if (!res.ok) {
         setLoading(false);
         toast.error(result.message);
@@ -295,6 +288,7 @@ const Reviews = ({ reviews, id }) => {
               <Button
                 loading={loading}
                 onClick={submitHandler}
+                shape='round'
                 size='large'
                 className=' bg-secondary-color'
               >

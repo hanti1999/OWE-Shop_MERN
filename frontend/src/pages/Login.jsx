@@ -51,6 +51,7 @@ const Login = () => {
     } catch (err) {
       toast.error('Tài khoản hoặc mật khẩu sai!');
       dispatch({ type: 'LOGIN_FAILURE', payload: err.message });
+      setLoading(false);
     }
   };
 
