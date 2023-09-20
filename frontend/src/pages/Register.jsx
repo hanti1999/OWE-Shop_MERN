@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import { BASE_URL } from '../utils/config';
 
 import { toast } from 'react-toastify';
-import { Button } from 'antd';
+import { Button, Form, Input } from 'antd';
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
@@ -62,82 +62,70 @@ const Register = () => {
         </div>
 
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-          <form className='space-y-6' method='POST' action='#'>
-            <div>
-              <label
-                htmlFor='username'
-                className='block text-sm font-medium leading-6'
-              >
-                Tên tài khoản
-              </label>
-              <div className='mt-2'>
-                <input
-                  id='username'
-                  name='username'
-                  type='text'
-                  placeholder='Tên tài khoản...'
-                  onChange={handleChange}
-                  required
-                  className='outline-secondary-color block w-full rounded-md border py-1.5 px-2 shadow-sm sm:text-sm sm:leading-6'
-                />
-              </div>
-            </div>
+          <Form className='space-y-6' layout='vertical'>
+            <Form.Item
+              label='Tên tài khoản'
+              name='username'
+              rules={[
+                {
+                  required: true,
+                  message: 'Nhập tên tài khoản!',
+                },
+              ]}
+            >
+              <Input
+                onChange={handleChange}
+                size='large'
+                placeholder='Nhập tên tài khoản ...'
+              />
+            </Form.Item>
 
-            <div>
-              <label
-                htmlFor='email'
-                className='block text-sm font-medium leading-6'
-              >
-                Email
-              </label>
-              <div className='mt-2'>
-                <input
-                  id='email'
-                  name='email'
-                  type='email'
-                  placeholder='Email...'
-                  onChange={handleChange}
-                  required
-                  className='outline-secondary-color block w-full rounded-md border py-1.5 px-2 shadow-sm sm:text-sm sm:leading-6'
-                />
-              </div>
-            </div>
+            <Form.Item
+              label='Email'
+              name='email'
+              rules={[
+                {
+                  required: true,
+                  message: 'Nhập email của bạn!',
+                },
+              ]}
+            >
+              <Input
+                size='large'
+                onChange={handleChange}
+                placeholder='Nhập email ...'
+              />
+            </Form.Item>
 
-            <div>
-              <div className='flex items-center justify-between'>
-                <label
-                  htmlFor='password'
-                  className='block text-sm font-medium leading-6'
-                >
-                  Mật khẩu
-                </label>
-              </div>
-              <div className='mt-2'>
-                <input
-                  id='password'
-                  name='password'
-                  type='password'
-                  placeholder='Mật khẩu...'
-                  onChange={handleChange}
-                  required
-                  className='outline-secondary-color block w-full rounded-md border py-1.5 px-2 shadow-sm sm:text-sm sm:leading-6'
-                />
-              </div>
-            </div>
+            <Form.Item
+              label='Mật khẩu'
+              name='password'
+              rules={[
+                {
+                  required: true,
+                  message: 'Nhập mật khẩu của bạn!',
+                },
+              ]}
+            >
+              <Input.Password
+                onChange={handleChange}
+                size='large'
+                placeholder='Nhập mật khẩu ...'
+              />
+            </Form.Item>
 
-            <div>
+            <Form.Item>
               <Button
                 onClick={handleRegister}
-                className='w-full bg-secondary-color'
+                className=' bg-secondary-color w-full'
                 size='large'
+                htmlType='submit'
                 loading={loading}
               >
-                <span className='text-white hover:text-inherit'>
-                  Tạo tài khoản
-                </span>
+                <span className='text-white hover:text-inherit'>Đăng Ký</span>
               </Button>
-            </div>
-          </form>
+            </Form.Item>
+          </Form>
 
           <p className='mt-4 text-center text-sm'>
             Đã có tài khoản?{' '}

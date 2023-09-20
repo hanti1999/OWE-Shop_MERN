@@ -9,6 +9,9 @@ function App() {
         theme={{
           token: {
             colorPrimary: '#faa935',
+            fontSize: 16,
+            fontSizeLG: 18,
+            fontFamily: '"Montserrat", sans-serif',
           },
           components: {
             Pagination: {

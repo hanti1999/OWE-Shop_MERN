@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-
-import ProductCard from '../shared/ProductCard';
-
-import useFetch from '../hooks/useFetch.js';
-import { BASE_URL } from '../utils/config.js';
-
 import { Pagination, Select } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+
+import ProductCard from '../shared/ProductCard';
+import useFetch from '../hooks/useFetch.js';
+import { BASE_URL } from '../utils/config.js';
 
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);

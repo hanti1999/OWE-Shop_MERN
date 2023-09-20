@@ -4,7 +4,7 @@ import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { BASE_URL } from '../utils/config';
 
-import { Button } from 'antd';
+import { Button, Form, Input } from 'antd';
 import { toast } from 'react-toastify';
 
 const Login = () => {
@@ -68,69 +68,53 @@ const Login = () => {
         </div>
 
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-          <form className='space-y-6' method='POST' action='#'>
-            <div>
-              <label
-                htmlFor='email'
-                className='block text-sm font-medium leading-6'
-              >
-                Email
-              </label>
-              <div className='mt-2'>
-                <input
-                  id='email'
-                  name='email'
-                  type='email'
-                  placeholder='Email...'
-                  onChange={handleChange}
-                  required
-                  className='outline-secondary-color block w-full rounded-md border py-1.5 px-2 shadow-sm sm:text-sm sm:leading-6'
-                />
-              </div>
-            </div>
+          <Form className='space-y-6' layout='vertical'>
+            <Form.Item
+              label='Email'
+              name='email'
+              rules={[
+                {
+                  required: true,
+                  message: 'Nhập email của bạn!',
+                },
+              ]}
+            >
+              <Input
+                size='large'
+                onChange={handleChange}
+                placeholder='Nhập email ...'
+              />
+            </Form.Item>
 
-            <div>
-              <div className='flex items-center justify-between'>
-                <label
-                  htmlFor='password'
-                  className='block text-sm font-medium leading-6'
-                  placeholder='Email...'
-                >
-                  Mật khẩu
-                </label>
-                <div className='text-sm'>
-                  <a
-                    href='#'
-                    className='font-semibold text-secondary-color hover:text-primary-color'
-                  >
-                    Quên mật khẩu?
-                  </a>
-                </div>
-              </div>
-              <div className='mt-2'>
-                <input
-                  id='password'
-                  name='password'
-                  type='password'
-                  placeholder='Mật khẩu...'
-                  onChange={handleChange}
-                  required
-                  className='outline-secondary-color block w-full rounded-md border py-1.5 px-2 shadow-sm sm:text-sm sm:leading-6'
-                />
-              </div>
-            </div>
+            <Form.Item
+              label='Mật khẩu'
+              name='password'
+              rules={[
+                {
+                  required: true,
+                  message: 'Nhập mật khẩu của bạn!',
+                },
+              ]}
+            >
+              <Input.Password
+                onChange={handleChange}
+                size='large'
+                placeholder='Nhập mật khẩu ...'
+              />
+            </Form.Item>
 
-            <div>
+            <Form.Item>
               <Button
                 onClick={handleLogin}
                 className=' bg-secondary-color w-full'
                 size='large'
+                htmlType='submit'
                 loading={loading}
               >
                 <span className='text-white hover:text-inherit'>Đăng nhập</span>
               </Button>
-            </div>
-          </form>
+            </Form.Item>
+          </Form>
 
           <p className='mt-4 text-center text-sm'>
             Chưa có tài khoản?{' '}
