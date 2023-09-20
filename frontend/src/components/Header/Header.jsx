@@ -83,16 +83,18 @@ const Header = () => {
             ))}
           </ul>
 
-          <div className='menu__right flex items-center gap-6'>
+          <div className='menu__right flex items-center'>
             <div className='flex items-center'>
               <button onClick={searchToggle}>
                 <i className='ri-search-line cursor-pointer'></i>
               </button>
+
               <button>
                 <Link to='/wishlish'>
                   <i className='ri-heart-line'></i>
                 </Link>
               </button>
+
               <button>
                 <Badge
                   style={{ backgroundColor: '#faa935' }}
@@ -103,6 +105,7 @@ const Header = () => {
                   </Link>
                 </Badge>
               </button>
+
               {user ? (
                 <Popover
                   content={
@@ -128,11 +131,11 @@ const Header = () => {
                   </Link>
                 </button>
               )}
-            </div>
 
-            <span className='mobile__menu md:hidden'>
-              <i className='ri-menu-line'></i>
-            </span>
+              <button className='mobile__menu md:hidden'>
+                <i className='ri-menu-line'></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>

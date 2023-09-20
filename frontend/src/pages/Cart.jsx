@@ -115,10 +115,10 @@ const Form = () => {
   const [order, setOrder] = useState({
     userId: user?._id,
     userEmail: user?.email,
-    txtCustomerName: null,
-    txtPhone: null,
-    txtAddress: null,
-    txtNote: null,
+    fullName: undefined,
+    phone: undefined,
+    address: undefined,
+    note: undefined,
     cart: cartItems,
   });
 
@@ -131,29 +131,29 @@ const Form = () => {
 
   const handlePlaceOrder = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
     try {
-      if (validatePhoneNumber.test(txtPhone.value) == false) {
+      setLoading(true);
+
+      if (validatePhoneNumber.test(phone.value) === false) {
         toast.error('Số điện thoại không hợp lệ!');
         setLoading(false);
       } else {
         const res = await fetch(`${BASE_URL}/cart`, {
           method: 'post',
           headers: {
-            'content-type': 'application/json',
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(order),
         });
 
         const result = await res.json();
 
-        if (!res.ok) {
-          toast.error(result.message);
-          setLoading(false);
-        } else if (res.ok) {
-          setLoading(false);
+        if (res.ok) {
           navigate('/thank-you');
+          setLoading(false);
+        } else {
+          toast.error(result.error);
+          setLoading(false);
         }
       }
     } catch (err) {
@@ -164,51 +164,51 @@ const Form = () => {
 
   return (
     <>
-      <form action='' method=''>
+      <form method='POST'>
         <div className='form-group'>
-          <label htmlFor='txtCustomerName'>Tên</label>
+          <label htmlFor='fullName'>Tên</label>
           <input
             className='form-control'
             type='text'
             required
             placeholder='Tên người nhận'
-            name='txtCustomerName'
-            id='txtCustomerName'
+            name='fullName'
+            id='fullName'
             onChange={handleChange}
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='txtPhone'>Số điện thoại</label>
+          <label htmlFor='phone'>Số điện thoại</label>
           <input
             className='form-control'
             type='text'
             required
             placeholder='Số điện thoại'
-            name='txtPhone'
-            id='txtPhone'
+            name='phone'
+            id='phone'
             onChange={handleChange}
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='txtAddress'>Địa chỉ nhận hàng</label>
+          <label htmlFor='address'>Địa chỉ nhận hàng</label>
           <input
             className='form-control'
             type='text'
             required
             placeholder='Địa chỉ nhận hàng'
-            name='txtAddress'
-            id='txtAddress'
+            name='address'
+            id='address'
             onChange={handleChange}
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='txtNote'>Ghi chú</label>
+          <label htmlFor='note'>Ghi chú</label>
           <textarea
             className='form-control'
             type='text'
             placeholder='Ghi chú'
-            name='txtNote'
-            id='txtNote'
+            name='note'
+            id='note'
             onChange={handleChange}
           />
         </div>

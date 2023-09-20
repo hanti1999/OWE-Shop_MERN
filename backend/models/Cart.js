@@ -1,37 +1,21 @@
 import mongoose from 'mongoose';
 
-const CartSchema = new mongoose.Schema(
+const cartSchema = new mongoose.Schema(
   {
-    userId: {
-      type: String,
-    },
-    userEmail: {
-      type: String,
-    },
+    userId: String,
+    userEmail: String,
     fullName: {
       type: String,
       required: true,
     },
     cart: [
       {
-        id: {
-          type: String,
-        },
-        title: {
-          type: String,
-        },
-        size: {
-          type: String,
-        },
-        price: {
-          type: Number,
-        },
-        quantity: {
-          type: Number,
-        },
-        totalPrice: {
-          type: Number,
-        },
+        id: String,
+        title: String,
+        size: String,
+        price: Number,
+        quantity: Number,
+        totalPrice: Number,
       },
     ],
     address: {
@@ -42,9 +26,7 @@ const CartSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    note: {
-      type: String,
-    },
+    note: String,
     cheched: {
       type: Boolean,
       default: false,
@@ -53,4 +35,4 @@ const CartSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model('Cart', CartSchema);
+export default mongoose.model('Cart', cartSchema);

@@ -12,8 +12,8 @@ export const createCart = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Đặt hàng không thành công',
-      error: error,
+      message: 'Lỗi máy chủ',
+      error: error.message,
     });
   }
 };

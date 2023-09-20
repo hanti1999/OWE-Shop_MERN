@@ -12,16 +12,16 @@ export const createReview = async (req, res) => {
       $push: { reviews: savedReview._id },
     });
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: 'Gửi đánh giá thành công!',
-        data: savedReview,
-      });
+    res.status(200).json({
+      success: true,
+      message: 'Gửi đánh giá thành công!',
+      data: savedReview,
+    });
   } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: 'Không thể Gửi đánh giá!' });
+    res.status(500).json({
+      success: false,
+      message: 'Không thể Gửi đánh giá!',
+      error: err.message,
+    });
   }
 };

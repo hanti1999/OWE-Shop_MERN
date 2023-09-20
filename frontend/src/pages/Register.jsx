@@ -9,15 +9,14 @@ import { Button } from 'antd';
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [registerInfo, setRegisterInfo] = useState({
     username: undefined,
     email: undefined,
     password: undefined,
   });
-
-  const { dispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setRegisterInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -41,11 +40,12 @@ const Register = () => {
         navigate('/login');
       } else {
         toast.error('Đăng ký không thành công! vui lòng thử lại');
+        setLoading(false);
       }
-      setLoading(false);
     } catch (err) {
       toast.error('Đăng ký không thành công! vui lòng thử lại');
       console.alert(err.message);
+      setLoading(false);
     }
   };
 
