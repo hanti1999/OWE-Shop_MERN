@@ -46,3 +46,18 @@ header i {
 .menu__right i:hover {
     @apply text-secondary-color
 }
+
+@media only screen and (max-width: 768px) {
+    .nav {
+        @apply w-full h-full fixed top-0 left-0 bg-[rgba(0,0,0,0.411)] z-[999] invisible opacity-0 transition-all
+    }
+
+    .menu {
+        @apply absolute top-0 right-0 h-full flex-col justify-center w-1/2 bg-white z-[1000]
+    }
+
+    .show__menu {
+        @apply visible opacity-100
+    }
+}
+

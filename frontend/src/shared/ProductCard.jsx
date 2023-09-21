@@ -16,12 +16,7 @@ const ProductCard = ({ products }) => {
         <img src={productImg} className='object-cover h-full w-full' alt='' />
       </Link>
       <div className='product__info p-2'>
-        <div className='flex justify-between'>
-          <span className='text-gray-500'>{gender}</span>
-          <span className='cursor-pointer'>
-            <i className='ri-heart-add-line text-2xl'></i>
-          </span>
-        </div>
+        <span className='text-gray-500'>{gender}</span>
         <Link to={`/shop/products/${ConvertVie(title)}-${_id}`}>
           <h4 className='font-semibold pb-4'>{title}</h4>
         </Link>

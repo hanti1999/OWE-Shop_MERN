@@ -79,11 +79,7 @@ const Login = () => {
                 },
               ]}
             >
-              <Input
-                size='large'
-                onChange={handleChange}
-                placeholder='Nhập email ...'
-              />
+              <Input size='large' onChange={handleChange} />
             </Form.Item>
 
             <Form.Item
@@ -96,11 +92,7 @@ const Login = () => {
                 },
               ]}
             >
-              <Input.Password
-                onChange={handleChange}
-                size='large'
-                placeholder='Nhập mật khẩu ...'
-              />
+              <Input.Password onChange={handleChange} size='large' />
             </Form.Item>
 
             <Form.Item>

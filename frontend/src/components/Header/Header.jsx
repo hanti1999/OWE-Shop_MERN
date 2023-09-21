@@ -26,6 +26,7 @@ const nav__links = [
 const Header = () => {
   const searchRef = useRef();
   const headerRef = useRef(null);
+  const menuRef = useRef();
   const navigate = useNavigate();
   const { user, dispatch } = useContext(AuthContext);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
@@ -53,6 +54,8 @@ const Header = () => {
     navigate('/');
   };
 
+  const toggleMenu = () => menuRef.current.classList.toggle('show__menu');
+
   useEffect(() => {
     stickyHeaderFunc();
     return window.removeEventListener('scroll', stickyHeaderFunc);
@@ -68,31 +71,27 @@ const Header = () => {
             <h1 className='md:text-6xl text-4xl'>OWE</h1>
           </Link>
 
-          <ul className='hidden md:flex items-center gap-10 mb-0 pl-0'>
-            {nav__links.map((item, index) => (
-              <li className='nav__item' key={index}>
-                <NavLink
-                  className={(navClass) =>
-                    navClass.isActive ? 'active__link' : ''
-                  }
-                  to={item.path}
-                >
-                  {item.display}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          <div className='nav md:block' ref={menuRef} onClick={toggleMenu}>
+            <ul className='menu flex items-center gap-10 mb-0 pl-0'>
+              {nav__links.map((item, index) => (
+                <li className='nav__item' key={index}>
+                  <NavLink
+                    className={(navClass) =>
+                      navClass.isActive ? 'active__link' : ''
+                    }
+                    to={item.path}
+                  >
+                    {item.display}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div className='menu__right flex items-center'>
             <div className='flex items-center'>
               <button onClick={searchToggle}>
                 <i className='ri-search-line cursor-pointer'></i>
-              </button>
-
-              <button>
-                <Link to='/wishlish'>
-                  <i className='ri-heart-line'></i>
-                </Link>
               </button>
 
               <button>
@@ -109,10 +108,13 @@ const Header = () => {
               {user ? (
                 <Popover
                   content={
-                    <div className='text-base'>
+                    <div>
                       <p>{`Xin chào ${user.username}`}</p>
+                      <Link className='block pt-1 pb-2 border-b' to='/wishlist'>
+                        Danh sách yêu thích
+                      </Link>
                       <button
-                        className=' hover:text-secondary-color'
+                        className=' hover:text-secondary-color pt-1'
                         onClick={logout}
                       >
                         Đăng xuất
@@ -132,7 +134,7 @@ const Header = () => {
                 </button>
               )}
 
-              <button className='mobile__menu md:hidden'>
+              <button className='mobile__menu md:hidden' onClick={toggleMenu}>
                 <i className='ri-menu-line'></i>
               </button>
             </div>

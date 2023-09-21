@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { LoadingOutlined } from '@ant-design/icons';
-import { Rate, Select, Image, Button } from 'antd';
+import { Rate, Select, Image, Button, Tooltip } from 'antd';
 
 import ServiceList from '../services/ServiceList';
 import ProductList from '../shared/ProductList';
@@ -16,6 +16,7 @@ import '../styles/product-details.css';
 const ProductDetails = () => {
   const { id } = useParams();
   const sliceId = id.slice(-24, id.length);
+  const { user } = useContext(AuthContext);
 
   const {
     data: product,
@@ -32,22 +33,22 @@ const ProductDetails = () => {
 
   return (
     <>
-      <Details product={product} loading={loading} error={error} />
+      <Details product={product} loading={loading} error={error} user={user} />
       <Related
         relatedProducts={relatedProducts}
         loading={loading}
         error={error}
       />
-      <Reviews reviews={reviews} id={sliceId} />
+      <Reviews reviews={reviews} id={sliceId} user={user} />
     </>
   );
 };
 
-const Details = ({ product, loading, error }) => {
+const Details = ({ product, loading, error, user }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [sizeState, setSizeState] = useState('');
-
   const dispatch = useDispatch();
+  const [newLoading, setNewLoading] = useState(false);
 
   const {
     productImg,
@@ -83,6 +84,44 @@ const Details = ({ product, loading, error }) => {
       );
       setSizeState('');
       toast.success('Đã thêm sản phẩm vào giỏ hàng!');
+    }
+  };
+
+  const addWishlist = async (e) => {
+    e.preventDefault();
+    setNewLoading(true);
+    try {
+      if (!user || user === undefined || user === null) {
+        toast.error('Bạn chưa đăng nhập!');
+        setNewLoading(false);
+      } else {
+        const wishlishObj = {
+          productId: _id,
+          productTitle: title,
+          productImg: productImg,
+          productHref: window.location.href,
+        };
+
+        const res = await fetch(`${BASE_URL}/wishlist/${user._id}`, {
+          method: 'post',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(wishlishObj),
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          toast.success('Thêm vào wishlish thành công!');
+        } else {
+          toast.error(result.message);
+        }
+        setNewLoading(false);
+      }
+    } catch (err) {
+      toast.error('Lỗi! vui lòng thử lại sau!');
+      setNewLoading(false);
     }
   };
 
@@ -127,37 +166,40 @@ const Details = ({ product, loading, error }) => {
                     </p>
                   </div>
 
-                  <div className=' mt-3 flex max-md:flex-col justify-between'>
-                    <div>
-                      Kích thước áo:
-                      <Select
-                        className=' w-20 pl-1'
-                        defaultValue=''
-                        status={sizeState}
-                        onChange={onSelectSize}
-                        options={size?.map((s) => ({
-                          value: s,
-                          label: s,
-                        }))}
-                      />
-                    </div>
-                    <a
-                      className=' text-blue-500 underline'
-                      target='_blank'
-                      href='#'
-                    >
-                      Hướng dẫn chọn size
-                    </a>
+                  <div className=' mt-3'>
+                    Kích thước áo:
+                    <Select
+                      className=' w-20 pl-1'
+                      defaultValue=''
+                      status={sizeState}
+                      onChange={onSelectSize}
+                      options={size?.map((s) => ({
+                        value: s,
+                        label: s,
+                      }))}
+                    />
                   </div>
 
-                  <div className='mt-6'>
+                  <div className='mt-6 flex'>
                     <button
                       className='bg-black text-white px-6 py-2 rounded-3xl'
                       onClick={addToCart}
                     >
-                      <i className='ri-shopping-bag-3-line pr-1'></i>
+                      <i className='ri-shopping-bag-3-line pr-1 text-xl'></i>
                       Thêm vào giỏ hàng
                     </button>
+
+                    <Tooltip title='Thêm vào yêu thích'>
+                      <Button
+                        onClick={addWishlist}
+                        shape='circle'
+                        size='large'
+                        className='bg-red-400 ml-2'
+                        loading={newLoading}
+                      >
+                        <i className='ri-heart-add-line text-xl text-white'></i>
+                      </Button>
+                    </Tooltip>
                   </div>
 
                   <div className='mt-6 pt-1 border-t-2'>
@@ -215,11 +257,10 @@ const Related = ({ relatedProducts, loading, error }) => {
   );
 };
 
-const Reviews = ({ reviews, id }) => {
+const Reviews = ({ reviews, id, user }) => {
   const [rating, setRating] = useState(null);
   const [loading, setLoading] = useState(false);
   const reviewMsgRef = useRef();
-  const { user } = useContext(AuthContext);
 
   const submitHandler = async () => {
     setLoading(true);
@@ -237,7 +278,7 @@ const Reviews = ({ reviews, id }) => {
       };
 
       const res = await fetch(`${BASE_URL}/review/${id}`, {
-        method: 'post',
+        method: 'put',
         headers: {
           'Content-Type': 'application/json',
         },

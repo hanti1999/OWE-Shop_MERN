@@ -5,12 +5,12 @@ import {
   getSingleUser,
   updateUser,
 } from '../controllers/userController.js';
-const router = express.Router();
-
 import { verifyAdmin, verifyUser } from '../utils/verifyToken.js';
 
+const router = express.Router();
+
 // update user
-router.put('/:id', verifyUser, updateUser);
+router.put('/:id', updateUser);
 
 // delete user
 router.delete('/:id', verifyUser, deleteUser);

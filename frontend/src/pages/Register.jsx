@@ -73,11 +73,7 @@ const Register = () => {
                 },
               ]}
             >
-              <Input
-                onChange={handleChange}
-                size='large'
-                placeholder='Nhập tên tài khoản ...'
-              />
+              <Input onChange={handleChange} size='large' />
             </Form.Item>
 
             <Form.Item
@@ -90,11 +86,7 @@ const Register = () => {
                 },
               ]}
             >
-              <Input
-                size='large'
-                onChange={handleChange}
-                placeholder='Nhập email ...'
-              />
+              <Input size='large' onChange={handleChange} />
             </Form.Item>
 
             <Form.Item
@@ -107,11 +99,7 @@ const Register = () => {
                 },
               ]}
             >
-              <Input.Password
-                onChange={handleChange}
-                size='large'
-                placeholder='Nhập mật khẩu ...'
-              />
+              <Input.Password onChange={handleChange} size='large' />
             </Form.Item>
 
             <Form.Item>

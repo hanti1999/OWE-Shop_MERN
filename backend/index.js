@@ -9,6 +9,7 @@ import authRoute from './routes/auth.js';
 import userRoute from './routes/users.js';
 import reviewRoute from './routes/reviews.js';
 import cartRoute from './routes/cart.js';
+import wishlistRoute from './routes/wishlist.js';
 
 dotenv.config();
 const app = express();
@@ -40,6 +41,7 @@ app.use('/api/v1/products', poductRoute);
 app.use('/api/v1/users', userRoute);
 app.use('/api/v1/review', reviewRoute);
 app.use('/api/v1/cart', cartRoute);
+app.use('/api/v1/wishlist', wishlistRoute);
 
 app.listen(port, () => {
   connect();
