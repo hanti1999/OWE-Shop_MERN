@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: 'user',
     },
+    wishlist: [String],
   },
   { timestamps: true }
 );
