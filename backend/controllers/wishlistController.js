@@ -25,3 +25,22 @@ export const addWishlist = async (req, res) => {
     });
   }
 };
+
+export const removeWishlist = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await User.findByIdAndDelete(id);
+
+    res.status(200).json({
+      success: true,
+      message: 'Đã xóa khỏi wishlist!',
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Lỗi!',
+      error: err,
+    });
+  }
+};

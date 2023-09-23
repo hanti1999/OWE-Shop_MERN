@@ -8,8 +8,8 @@ const wishlistSchema = new mongoose.Schema(
     },
     productId: String,
     productImg: String,
-    productTitle: String,
-    productHref: String,
+    title: String,
+    gender: String,
   },
   { timestamps: true }
 );

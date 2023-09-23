@@ -97,9 +97,9 @@ const Details = ({ product, loading, error, user }) => {
       } else {
         const wishlishObj = {
           productId: _id,
-          productTitle: title,
+          title: title,
           productImg: productImg,
-          productHref: window.location.href,
+          gender: gender,
         };
 
         const res = await fetch(`${BASE_URL}/wishlist/${user._id}`, {
