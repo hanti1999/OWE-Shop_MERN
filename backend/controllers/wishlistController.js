@@ -20,7 +20,7 @@ export const addWishlist = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: 'Không thể thêm!',
+      message: 'Sản phẩm này đã có trong wishlist',
       error: err.message,
     });
   }

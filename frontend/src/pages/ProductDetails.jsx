@@ -194,7 +194,7 @@ const Details = ({ product, loading, error, user }) => {
                         onClick={addWishlist}
                         shape='circle'
                         size='large'
-                        className='bg-red-400 ml-2'
+                        className=' bg-blue-400 ml-2'
                         loading={newLoading}
                       >
                         <i className='ri-heart-add-line text-xl text-white'></i>

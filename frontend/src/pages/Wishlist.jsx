@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
+import { toast } from 'react-toastify';
+
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
 import ConvertVie from '../assets/data/ConvertVie';
-import { Link } from 'react-router-dom';
-import { LoadingOutlined } from '@ant-design/icons';
 
 const Wishlist = () => {
   const { user } = useContext(AuthContext);
+  const [newLoading, setNewLoading] = useState(false);
 
   const {
     data: currentUser,
@@ -16,6 +20,10 @@ const Wishlist = () => {
   } = useFetch(`${BASE_URL}/users/${user._id}`);
 
   const { wishlist } = currentUser;
+
+  const deleteWishlist = () => {
+    toast.error('Tính năng này đang phát triển');
+  };
 
   return (
     <section>
@@ -60,7 +68,20 @@ const Wishlist = () => {
                   />
                 </Link>
                 <div className='product__info p-2'>
-                  <span className='text-gray-500'>{item.gender}</span>
+                  <div className='flex justify-between'>
+                    <span className='text-gray-500'>{item.gender}</span>
+                    <Tooltip title='Xóa khỏi yêu thích'>
+                      <Button
+                        onClick={deleteWishlist}
+                        shape='circle'
+                        size='small'
+                        className='bg-red-400 ml-2'
+                        loading={newLoading}
+                      >
+                        <i className='ri-close-circle-line text-white'></i>
+                      </Button>
+                    </Tooltip>
+                  </div>
                   <Link
                     to={`/shop/products/${ConvertVie(item.title)}-${
                       item.productId
