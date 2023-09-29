@@ -30,7 +30,7 @@ export const removeWishlist = async (req, res) => {
   const id = req.params.id;
 
   try {
-    await User.findByIdAndDelete(id);
+    await Wishlist.findByIdAndDelete(id);
 
     res.status(200).json({
       success: true,

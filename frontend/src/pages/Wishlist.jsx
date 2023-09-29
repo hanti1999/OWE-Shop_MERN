@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Button, Tooltip } from 'antd';
 import { toast } from 'react-toastify';
-
 import { Link } from 'react-router-dom';
+
 import { AuthContext } from '../context/AuthContext';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
@@ -11,7 +11,7 @@ import ConvertVie from '../assets/data/ConvertVie';
 
 const Wishlist = () => {
   const { user } = useContext(AuthContext);
-  const [newLoading, setNewLoading] = useState(false);
+  const [newLoading, setLoadings] = useState([]);
 
   const {
     data: currentUser,
@@ -21,8 +21,34 @@ const Wishlist = () => {
 
   const { wishlist } = currentUser;
 
-  const deleteWishlist = () => {
-    toast.error('Tính năng này đang phát triển');
+  const deleteWishlist = async (id, index) => {
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
+
+    try {
+      const res = await fetch(`${BASE_URL}/wishlist/${id}`, {
+        method: 'delete',
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        toast.success('Xoá thành công!');
+      } else {
+        toast.error(result.message);
+      }
+
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
@@ -50,7 +76,7 @@ const Wishlist = () => {
         <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
           {!loading &&
             !error &&
-            wishlist?.map((item) => (
+            wishlist?.map((item, index) => (
               <div
                 key={item._id}
                 className='shadow-md rounded hover:shadow-2xl transition-all overflow-hidden'
@@ -72,13 +98,13 @@ const Wishlist = () => {
                     <span className='text-gray-500'>{item.gender}</span>
                     <Tooltip title='Xóa khỏi yêu thích'>
                       <Button
-                        onClick={deleteWishlist}
+                        onClick={() => deleteWishlist(item._id, index)}
                         shape='circle'
                         size='small'
-                        className='bg-red-400 ml-2'
-                        loading={newLoading}
+                        loading={newLoading[index]}
+                        danger
                       >
-                        <i className='ri-close-circle-line text-white'></i>
+                        <i className='ri-delete-bin-2-line text-red-500'></i>
                       </Button>
                     </Tooltip>
                   </div>

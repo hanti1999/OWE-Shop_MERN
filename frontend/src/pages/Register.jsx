@@ -44,7 +44,7 @@ const Register = () => {
       }
     } catch (err) {
       toast.error('Đăng ký không thành công! vui lòng thử lại');
-      console.alert(err.message);
+      console.log(err.message);
       setLoading(false);
     }
   };

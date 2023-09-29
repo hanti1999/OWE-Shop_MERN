@@ -7,6 +7,6 @@ import { verifyUser } from '../utils/verifyToken.js';
 const router = express.Router();
 
 router.post('/:userId', addWishlist);
-router.post('/:id', removeWishlist);
+router.delete('/:id', removeWishlist);
 
 export default router;
