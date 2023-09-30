@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
+
+import CommonSection from '../shared/CommonSection';
 
 const Support = () => {
   return (
-    <div>Support</div>
-  )
-}
+    <>
+      <CommonSection title={'Hỗ trợ'} />
+      <section>
+        <div className='container'></div>
+      </section>
+    </>
+  );
+};
 
-export default Support
+export default Support;

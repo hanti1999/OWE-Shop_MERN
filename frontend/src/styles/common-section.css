@@ -1,0 +1,4 @@
+.common__section {
+    background: linear-gradient(rgba(0, 0, 0, 0.562), rgba(0, 0, 0, 0.562)), url('https://img.freepik.com/free-vector/hand-drawn-designs-streetwear-illustration_23-2149863504.jpg?w=1380&t=st=1695958001~exp=1695958601~hmac=7d2883b0451c4906cd08ced1b5fa411f10b910ac7c71d8583e44c2327954c391') no-repeat center center;
+    @apply bg-cover h-[200px] flex items-center justify-center
+}

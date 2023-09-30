@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Badge, Popover } from 'antd';
+import { Badge, Popover, Dropdown, Space, Menu } from 'antd';
+import { DownOutlined, MenuOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 
 import { AuthContext } from '../../context/AuthContext';
@@ -17,11 +18,32 @@ const nav__links = [
     path: '/shop',
     display: 'SẢN PHẨM',
   },
+];
+
+const items = [
   {
-    path: '/support',
-    display: 'TRỢ GIÚP',
+    label: <a href='#'>Gangz</a>,
+    key: '0',
+  },
+  {
+    label: <a href='#'>Basic is life</a>,
+    key: '1',
+  },
+  {
+    label: <a href='#'>Original</a>,
+    key: '2',
   },
 ];
+
+const collectionPopover = (
+  <div>
+    <Space direction='vertical'>
+      <a href='#'>Gangz</a>
+      <a href='#'>Basic is life</a>
+      <a href='#'>Original</a>
+    </Space>
+  </div>
+);
 
 const Header = () => {
   const searchRef = useRef();
@@ -62,11 +84,11 @@ const Header = () => {
   });
 
   return (
-    <header className='header w-full h-20 leading-[80px]' ref={headerRef}>
-      <div className='container relative'>
+    <header className='header w-full h-20' ref={headerRef}>
+      <div className='container relative h-full'>
         <SearchBar searchRef={searchRef} searchToggle={searchToggle} />
 
-        <div className='flex items-center justify-between'>
+        <div className='flex items-center justify-between h-full'>
           <Link to='/' className='logo'>
             <h1 className='md:text-6xl text-4xl'>OWE</h1>
           </Link>
@@ -85,6 +107,22 @@ const Header = () => {
                   </NavLink>
                 </li>
               ))}
+
+              <li className='nav__item cursor-pointer'>
+                <Popover trigger='click' content={collectionPopover}>
+                  <Space>
+                    <a onClick={(e) => e.preventDefault()}>BỘ SƯU TẬP</a>
+                    <DownOutlined className='text-sm' />
+                  </Space>
+                </Popover>
+              </li>
+
+              <li>
+                <Space>
+                  <MenuOutlined />
+                  <DownOutlined className='text-sm' />
+                </Space>
+              </li>
             </ul>
           </div>
 

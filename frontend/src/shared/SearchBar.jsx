@@ -23,7 +23,11 @@ const SearchBar = ({ searchRef, searchToggle }) => {
   };
 
   return (
-    <form ref={searchRef} id='form__search' className='absolute left-0 right-0'>
+    <form
+      ref={searchRef}
+      id='form__search'
+      className='absolute left-0 right-0 leading-[80px]'
+    >
       <input
         type='text'
         name='q'
