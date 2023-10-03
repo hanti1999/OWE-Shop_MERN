@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { LoadingOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Button, Tooltip } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Button, Popconfirm } from 'antd';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 
@@ -93,20 +93,22 @@ const Wishlist = () => {
                     alt=''
                   />
                 </Link>
+
                 <div className='product__info p-2'>
                   <div className='flex justify-between'>
                     <span className='text-gray-500'>{item.gender}</span>
-                    <Tooltip title='Xóa khỏi yêu thích'>
-                      <Button
-                        onClick={() => deleteWishlist(item._id, index)}
-                        shape='circle'
-                        size='small'
-                        loading={newLoading[index]}
-                        danger
-                      >
+                    <Popconfirm
+                      title='Cảnh báo'
+                      description='Xóa sản phẩm khỏi danh sách yêu thích?'
+                      okText='Có'
+                      cancelText='Hủy'
+                      onConfirm={() => deleteWishlist(item._id, index)}
+                      loading={newLoading[index]}
+                    >
+                      <Button danger shape='circle' size='small'>
                         <i className='ri-delete-bin-2-line text-red-500'></i>
                       </Button>
-                    </Tooltip>
+                    </Popconfirm>
                   </div>
                   <Link
                     to={`/shop/products/${ConvertVie(item.title)}-${

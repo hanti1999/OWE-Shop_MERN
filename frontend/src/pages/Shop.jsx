@@ -34,56 +34,58 @@ const Shop = () => {
         <div className='container'>
           <div className='flex gap-3 items-center'>
             <h1 className='font-semibold text-2xl'>Sản phẩm</h1>
-            <Select
-              defaultValue=''
-              className=' w-[200px]'
-              onChange={onCategoryChange}
-              options={[
-                {
-                  value: '',
-                  label: 'Danh mục',
-                },
-                {
-                  value: 'ao-thun-form-rong',
-                  label: 'Áo thun form rộng',
-                },
-                {
-                  value: 'ao-thun-form-tieu-chuan',
-                  label: 'Áo thun form tiêu chuẩn',
-                },
-                {
-                  value: 'ao-so-mi-tieu-chuan',
-                  label: 'Áo sơ mi form tiêu chuẩn',
-                },
-                {
-                  value: 'ao-so-mi-form-rong',
-                  label: 'Áo sơ mi form rộng',
-                },
-              ]}
-            />
-            <Select
-              defaultValue='moi-nhat'
-              className=' w-[200px]'
-              onChange={onSortChange}
-              options={[
-                {
-                  value: 'moi-nhat',
-                  label: 'Mới nhất',
-                },
-                {
-                  value: 'ban-chay',
-                  label: 'Bán chạy',
-                },
-                {
-                  value: 'gia-tu-thap-den-cao',
-                  label: 'Giá từ thấp đến cao',
-                },
-                {
-                  value: 'gia-cao-thap-den-thap',
-                  label: 'Giá từ cao đến thấp',
-                },
-              ]}
-            />
+            <div className=' md:flex gap-3'>
+              <Select
+                defaultValue=''
+                className=' w-full md:w-[300px]'
+                onChange={onCategoryChange}
+                options={[
+                  {
+                    value: '',
+                    label: 'Danh mục',
+                  },
+                  {
+                    value: 'ao-thun-form-rong',
+                    label: 'Áo thun form rộng',
+                  },
+                  {
+                    value: 'ao-thun-form-tieu-chuan',
+                    label: 'Áo thun form tiêu chuẩn',
+                  },
+                  {
+                    value: 'ao-so-mi-tieu-chuan',
+                    label: 'Áo sơ mi form tiêu chuẩn',
+                  },
+                  {
+                    value: 'ao-so-mi-form-rong',
+                    label: 'Áo sơ mi form rộng',
+                  },
+                ]}
+              />
+              <Select
+                defaultValue='moi-nhat'
+                className=' w-full md:w-[300px]'
+                onChange={onSortChange}
+                options={[
+                  {
+                    value: 'moi-nhat',
+                    label: 'Mới nhất',
+                  },
+                  {
+                    value: 'ban-chay',
+                    label: 'Bán chạy',
+                  },
+                  {
+                    value: 'gia-tu-thap-den-cao',
+                    label: 'Giá từ thấp đến cao',
+                  },
+                  {
+                    value: 'gia-cao-thap-den-thap',
+                    label: 'Giá từ cao đến thấp',
+                  },
+                ]}
+              />
+            </div>
           </div>
         </div>
       </section>

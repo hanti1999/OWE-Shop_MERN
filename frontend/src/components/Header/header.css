@@ -34,7 +34,6 @@ header i {
     @apply flex gap-3 bg-white
 }
 
-.nav__item a:hover,
 #form__search i:hover {
     @apply text-secondary-color
 }
@@ -47,7 +46,7 @@ header i {
     @apply text-secondary-color
 }
 
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
     .nav {
         @apply w-full h-full fixed top-0 left-0 bg-[rgba(0,0,0,0.411)] z-[999] invisible opacity-0 transition-all
     }
@@ -59,5 +58,5 @@ header i {
     .show__menu {
         @apply visible opacity-100
     }
-}
+} */
 

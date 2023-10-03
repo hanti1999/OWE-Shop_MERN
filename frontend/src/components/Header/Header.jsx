@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useContext } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Badge, Popover, Dropdown, Space, Menu } from 'antd';
-import { DownOutlined, MenuOutlined } from '@ant-design/icons';
+import { Badge, Popover, Dropdown, Space } from 'antd';
 import { useSelector } from 'react-redux';
 
 import { AuthContext } from '../../context/AuthContext';
@@ -22,16 +21,48 @@ const nav__links = [
 
 const items = [
   {
-    label: <a href='#'>Gangz</a>,
+    label: <Link to='/'>TRANG CHỦ</Link>,
     key: '0',
   },
   {
-    label: <a href='#'>Basic is life</a>,
+    label: <Link to='/shop'>SẢN PHẨM</Link>,
     key: '1',
   },
   {
-    label: <a href='#'>Original</a>,
+    label: 'BỘ SƯU TẬP',
     key: '2',
+    children: [
+      {
+        key: '2-1',
+        label: <a href='#'>Gangz</a>,
+      },
+      {
+        key: '2-2',
+        label: <a href='#'>Basic is life</a>,
+      },
+      {
+        key: '2-3',
+        label: <a href='#'>Original</a>,
+      },
+    ],
+  },
+  {
+    label: 'DANH MỤC',
+    key: '3',
+    children: [
+      {
+        key: '3-1',
+        label: <a href='#'>Nam</a>,
+      },
+      {
+        key: '3-2',
+        label: <a href='#'>Nữ</a>,
+      },
+      {
+        key: '3-3',
+        label: <a href='#'>Unisex</a>,
+      },
+    ],
   },
 ];
 
@@ -41,6 +72,16 @@ const collectionPopover = (
       <a href='#'>Gangz</a>
       <a href='#'>Basic is life</a>
       <a href='#'>Original</a>
+    </Space>
+  </div>
+);
+
+const categoryPopover = (
+  <div>
+    <Space direction='vertical'>
+      <a href='#'>Nam</a>
+      <a href='#'>Nữ</a>
+      <a href='#'>Unisex</a>
     </Space>
   </div>
 );
@@ -93,7 +134,7 @@ const Header = () => {
             <h1 className='md:text-6xl text-4xl'>OWE</h1>
           </Link>
 
-          <div className='nav md:block' ref={menuRef} onClick={toggleMenu}>
+          <nav className='hidden md:block'>
             <ul className='menu flex items-center gap-10 mb-0 pl-0'>
               {nav__links.map((item, index) => (
                 <li className='nav__item' key={index}>
@@ -112,19 +153,21 @@ const Header = () => {
                 <Popover trigger='click' content={collectionPopover}>
                   <Space>
                     <a onClick={(e) => e.preventDefault()}>BỘ SƯU TẬP</a>
-                    <DownOutlined className='text-sm' />
+                    <i className='ri-arrow-down-s-line'></i>
                   </Space>
                 </Popover>
               </li>
 
-              <li>
-                <Space>
-                  <MenuOutlined />
-                  <DownOutlined className='text-sm' />
-                </Space>
+              <li className='nav__item cursor-pointer'>
+                <Popover trigger='click' content={categoryPopover}>
+                  <Space>
+                    <i className='ri-menu-line'></i>
+                    <i className='ri-arrow-down-s-line'></i>
+                  </Space>
+                </Popover>
               </li>
             </ul>
-          </div>
+          </nav>
 
           <div className='menu__right flex items-center'>
             <div className='flex items-center'>
@@ -172,9 +215,16 @@ const Header = () => {
                 </button>
               )}
 
-              <button className='mobile__menu md:hidden' onClick={toggleMenu}>
-                <i className='ri-menu-line'></i>
-              </button>
+              <Dropdown
+                menu={{
+                  items,
+                }}
+                trigger={['click']}
+              >
+                <button className='mobile__menu md:hidden'>
+                  <i className='ri-menu-line'></i>
+                </button>
+              </Dropdown>
             </div>
           </div>
         </div>

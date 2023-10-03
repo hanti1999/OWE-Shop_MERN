@@ -113,7 +113,7 @@ const Details = ({ product, loading, error, user }) => {
         const result = await res.json();
 
         if (res.ok) {
-          toast.success('Thêm vào wishlish thành công!');
+          toast.success('Thêm vào wishlist thành công!');
         } else {
           toast.error(result.message);
         }
