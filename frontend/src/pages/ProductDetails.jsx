@@ -227,7 +227,7 @@ const Reviews = ({ reviews, id, user }) => {
       };
 
       const res = await fetch(`${BASE_URL}/review/${id}`, {
-        method: 'put',
+        method: 'post',
         headers: {
           'Content-Type': 'application/json',
         },

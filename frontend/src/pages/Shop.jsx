@@ -6,6 +6,48 @@ import ProductCard from '../shared/ProductCard';
 import useFetch from '../hooks/useFetch.js';
 import { BASE_URL } from '../utils/config.js';
 
+const categoryOptions = [
+  {
+    value: '',
+    label: 'Danh mục',
+  },
+  {
+    value: 'ao-thun-form-rong',
+    label: 'Áo thun form rộng',
+  },
+  {
+    value: 'ao-thun-form-tieu-chuan',
+    label: 'Áo thun form tiêu chuẩn',
+  },
+  {
+    value: 'ao-so-mi-tieu-chuan',
+    label: 'Áo sơ mi form tiêu chuẩn',
+  },
+  {
+    value: 'ao-so-mi-form-rong',
+    label: 'Áo sơ mi form rộng',
+  },
+];
+
+const sortOptions = [
+  {
+    value: 'newest',
+    label: 'Mới nhất',
+  },
+  {
+    value: 'popular',
+    label: 'Bán chạy',
+  },
+  {
+    value: 'asc',
+    label: 'Giá từ thấp đến cao',
+  },
+  {
+    value: 'des',
+    label: 'Giá từ cao đến thấp',
+  },
+];
+
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -24,9 +66,13 @@ const Shop = () => {
     setCurrentPage(page);
   };
 
-  const onCategoryChange = (e) => {};
+  const onCategoryChange = (e) => {
+    console.log(e);
+  };
 
-  const onSortChange = (e) => {};
+  const onSortChange = (e) => {
+    console.log(e);
+  };
 
   return (
     <>
@@ -39,51 +85,13 @@ const Shop = () => {
                 defaultValue=''
                 className=' w-full md:w-[300px]'
                 onChange={onCategoryChange}
-                options={[
-                  {
-                    value: '',
-                    label: 'Danh mục',
-                  },
-                  {
-                    value: 'ao-thun-form-rong',
-                    label: 'Áo thun form rộng',
-                  },
-                  {
-                    value: 'ao-thun-form-tieu-chuan',
-                    label: 'Áo thun form tiêu chuẩn',
-                  },
-                  {
-                    value: 'ao-so-mi-tieu-chuan',
-                    label: 'Áo sơ mi form tiêu chuẩn',
-                  },
-                  {
-                    value: 'ao-so-mi-form-rong',
-                    label: 'Áo sơ mi form rộng',
-                  },
-                ]}
+                options={categoryOptions}
               />
               <Select
-                defaultValue='moi-nhat'
+                defaultValue='newest'
                 className=' w-full md:w-[300px]'
                 onChange={onSortChange}
-                options={[
-                  {
-                    value: 'moi-nhat',
-                    label: 'Mới nhất',
-                  },
-                  {
-                    value: 'ban-chay',
-                    label: 'Bán chạy',
-                  },
-                  {
-                    value: 'gia-tu-thap-den-cao',
-                    label: 'Giá từ thấp đến cao',
-                  },
-                  {
-                    value: 'gia-cao-thap-den-thap',
-                    label: 'Giá từ cao đến thấp',
-                  },
-                ]}
+                options={sortOptions}
               />
             </div>
           </div>
