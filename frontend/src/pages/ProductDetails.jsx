@@ -48,7 +48,6 @@ const Details = ({ product, loading, error, user }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [sizeState, setSizeState] = useState('');
   const dispatch = useDispatch();
-  const [newLoading, setNewLoading] = useState(false);
 
   const {
     productImg,
@@ -84,44 +83,6 @@ const Details = ({ product, loading, error, user }) => {
       );
       setSizeState('');
       toast.success('Đã thêm sản phẩm vào giỏ hàng!');
-    }
-  };
-
-  const addWishlist = async (e) => {
-    e.preventDefault();
-    setNewLoading(true);
-    try {
-      if (!user || user === undefined || user === null) {
-        toast.error('Bạn chưa đăng nhập!');
-        setNewLoading(false);
-      } else {
-        const wishlishObj = {
-          productId: _id,
-          title: title,
-          productImg: productImg,
-          gender: gender,
-        };
-
-        const res = await fetch(`${BASE_URL}/wishlist/${user._id}`, {
-          method: 'post',
-          headers: {
-            'content-type': 'application/json',
-          },
-          body: JSON.stringify(wishlishObj),
-        });
-
-        const result = await res.json();
-
-        if (res.ok) {
-          toast.success('Thêm vào wishlist thành công!');
-        } else {
-          toast.error(result.message);
-        }
-        setNewLoading(false);
-      }
-    } catch (err) {
-      toast.error('Lỗi! vui lòng thử lại sau!');
-      setNewLoading(false);
     }
   };
 
@@ -188,18 +149,6 @@ const Details = ({ product, loading, error, user }) => {
                       <i className='ri-shopping-bag-3-line pr-1 text-xl'></i>
                       Thêm vào giỏ hàng
                     </button>
-
-                    <Tooltip title='Thêm vào yêu thích'>
-                      <Button
-                        onClick={addWishlist}
-                        shape='circle'
-                        size='large'
-                        className=' bg-blue-400 ml-2'
-                        loading={newLoading}
-                      >
-                        <i className='ri-heart-add-line text-xl text-white'></i>
-                      </Button>
-                    </Tooltip>
                   </div>
 
                   <div className='mt-6 pt-1 border-t-2'>

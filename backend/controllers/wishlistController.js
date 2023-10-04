@@ -14,13 +14,13 @@ export const addWishlist = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: 'Thêm vào wishlist thành công',
+      message: 'Thêm vào danh sách yêu thích thành công',
       data: savedWishlist,
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: 'Sản phẩm này đã có trong wishlist',
+      message: 'Sản phẩm này đã có trong danh sách yêu thích',
       error: err.message,
     });
   }

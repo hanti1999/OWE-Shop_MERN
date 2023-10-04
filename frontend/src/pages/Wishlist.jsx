@@ -63,10 +63,10 @@ const Wishlist = () => {
         {wishlist?.length === 0 ? (
           <div className='text-center'>
             <h4 className='text-2xl text-center'>
-              Chưa có sản phẩm trong wishlist
+              Tính năng này đang bảo trì! vui lòng quay lại sau
             </h4>
             <button className='mt-3 primary__btn'>
-              <Link to='/shop'>Thêm sản phẩm ngay!</Link>
+              <Link to='/shop'>Sản phẩm</Link>
             </button>
           </div>
         ) : (
