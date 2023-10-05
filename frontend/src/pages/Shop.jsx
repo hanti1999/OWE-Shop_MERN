@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pagination, Select } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -35,10 +35,6 @@ const sortOptions = [
     label: 'Mới nhất',
   },
   {
-    value: 'popular',
-    label: 'Bán chạy',
-  },
-  {
     value: 'asc',
     label: 'Giá từ thấp đến cao',
   },
@@ -50,6 +46,7 @@ const sortOptions = [
 
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentProducts, setCurrentProducts] = useState([]);
 
   const {
     data: products,
@@ -71,8 +68,20 @@ const Shop = () => {
   };
 
   const onSortChange = (e) => {
-    console.log(e);
+    if (e === 'asc') {
+      const sortedProducts = [...products].sort((a, b) => a.price - b.price);
+      setCurrentProducts(sortedProducts);
+    } else if (e === 'des') {
+      const sortedProducts = [...products].sort((a, b) => b.price - a.price);
+      setCurrentProducts(sortedProducts);
+    } else {
+      setCurrentProducts(products);
+    }
   };
+
+  useEffect(() => {
+    setCurrentProducts(products);
+  }, [products]);
 
   return (
     <>
@@ -107,8 +116,8 @@ const Shop = () => {
         {!loading && !error && (
           <div className='container'>
             <div className='grid grid-cols-2 md:grid-cols-4 gap-3'>
-              {products &&
-                products?.map((item, index) => (
+              {currentProducts &&
+                currentProducts?.map((item, index) => (
                   <ProductCard products={item} key={index} />
                 ))}
             </div>
