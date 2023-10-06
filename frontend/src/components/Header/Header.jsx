@@ -89,7 +89,6 @@ const categoryPopover = (
 const Header = () => {
   const searchRef = useRef();
   const headerRef = useRef(null);
-  const menuRef = useRef();
   const navigate = useNavigate();
   const { user, dispatch } = useContext(AuthContext);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
@@ -116,8 +115,6 @@ const Header = () => {
     toast.success('Đăng xuất thành công!');
     navigate('/');
   };
-
-  const toggleMenu = () => menuRef.current.classList.toggle('show__menu');
 
   useEffect(() => {
     stickyHeaderFunc();

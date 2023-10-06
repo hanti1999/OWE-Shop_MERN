@@ -12,20 +12,16 @@ const categoryOptions = [
     label: 'Danh mục',
   },
   {
-    value: 'ao-thun-form-rong',
-    label: 'Áo thun form rộng',
+    value: 'nam',
+    label: 'Áo nam',
   },
   {
-    value: 'ao-thun-form-tieu-chuan',
-    label: 'Áo thun form tiêu chuẩn',
+    value: 'nu',
+    label: 'Áo nữ',
   },
   {
-    value: 'ao-so-mi-tieu-chuan',
-    label: 'Áo sơ mi form tiêu chuẩn',
-  },
-  {
-    value: 'ao-so-mi-form-rong',
-    label: 'Áo sơ mi form rộng',
+    value: 'unisex',
+    label: 'Áo unisex',
   },
 ];
 
@@ -64,7 +60,18 @@ const Shop = () => {
   };
 
   const onCategoryChange = (e) => {
-    console.log(e);
+    if (e === 'nam') {
+      const filteredProducts = products.filter((i) => i.gender === 'nam');
+      setCurrentProducts(filteredProducts);
+    } else if (e === 'nu') {
+      const filteredProducts = products.filter((i) => i.gender === 'nu');
+      setCurrentProducts(filteredProducts);
+    } else if (e === 'unisex') {
+      const filteredProducts = products.filter((i) => i.gender === 'unisex');
+      setCurrentProducts(filteredProducts);
+    } else {
+      setCurrentProducts(products);
+    }
   };
 
   const onSortChange = (e) => {

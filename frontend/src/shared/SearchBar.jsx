@@ -6,7 +6,8 @@ const SearchBar = ({ searchRef, searchToggle }) => {
   const navigate = useNavigate();
   const inputRef = useRef('');
 
-  const searchHandler = async () => {
+  const searchHandler = async (e) => {
+    e.preventDefault();
     const inputTitle = inputRef.current.value;
 
     const res = await fetch(
@@ -27,17 +28,17 @@ const SearchBar = ({ searchRef, searchToggle }) => {
       ref={searchRef}
       id='form__search'
       className='absolute left-0 right-0 leading-[80px]'
+      onSubmit={searchHandler}
     >
       <input
         type='text'
-        name='q'
         className='w-full px-2 outline-none'
         placeholder='Nhập từ khóa/mã cầm tìm'
         ref={inputRef}
       />
-      <span type='submit' className=' cursor-pointer' onClick={searchHandler}>
+      <button type='submit' className=' cursor-pointer' onClick={searchHandler}>
         <i className='ri-search-line'></i>
-      </span>
+      </button>
       <div className='cursor-pointer' onClick={searchToggle}>
         <i className='ri-close-line'></i>
       </div>
