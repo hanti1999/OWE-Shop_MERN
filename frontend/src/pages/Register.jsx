@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { AuthContext } from '../context/AuthContext';
+import { authActions } from '../redux/slices/authSlice';
 import { BASE_URL } from '../utils/config';
 
 import { toast } from 'react-toastify';
@@ -9,7 +10,7 @@ import { Button, Form, Input } from 'antd';
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
-  const { dispatch } = useContext(AuthContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [registerInfo, setRegisterInfo] = useState({
@@ -35,7 +36,7 @@ const Register = () => {
       });
 
       if (res.ok) {
-        dispatch({ type: 'REGISTER_SUCCESS' });
+        dispatch(authActions.registerSuccess);
         toast.success('Tạo tài khoản thành công');
         navigate('/login');
       } else {

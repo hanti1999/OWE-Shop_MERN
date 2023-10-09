@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useContext } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Badge, Popover, Dropdown, Space } from 'antd';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { AuthContext } from '../../context/AuthContext';
+import { authActions } from '../../redux/slices/authSlice';
 import SearchBar from '../../shared/SearchBar';
 import './header.css';
 
@@ -90,7 +90,8 @@ const Header = () => {
   const searchRef = useRef();
   const headerRef = useRef(null);
   const navigate = useNavigate();
-  const { user, dispatch } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const searchToggle = () => {
@@ -111,7 +112,7 @@ const Header = () => {
   };
 
   const logout = () => {
-    dispatch({ type: 'LOGOUT' });
+    dispatch(authActions.logout());
     toast.success('Đăng xuất thành công!');
     navigate('/');
   };
@@ -183,11 +184,11 @@ const Header = () => {
                 </Badge>
               </button>
 
-              {user ? (
+              {user.isLoggedIn ? (
                 <Popover
                   content={
                     <div>
-                      <p>{`Xin chào ${user.username}`}</p>
+                      <p>{`Xin chào ${user.user.username}`}</p>
                       <Link className='block pt-1 pb-2 border-b' to='/wishlist'>
                         Danh sách yêu thích
                       </Link>
@@ -211,6 +212,7 @@ const Header = () => {
                   </Link>
                 </button>
               )}
+              {user.error && <p>Có lỗi xảy ra: {user.error}</p>}
 
               <Dropdown
                 menu={{

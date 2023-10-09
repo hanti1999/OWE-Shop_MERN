@@ -15,6 +15,9 @@ import Female from '../pages/Female';
 import Cart from '../pages/Cart';
 import Wishlist from '../pages/Wishlist';
 import ThankYou from '../pages/ThankYou';
+import Dashboard from '../admin/Dashboard';
+
+import PrivateRoute from './PrivateRoute';
 
 export const Routers = createBrowserRouter([
   {
@@ -77,6 +80,16 @@ export const Routers = createBrowserRouter([
       {
         path: '/thank-you',
         element: <ThankYou />,
+      },
+      {
+        path: '/*',
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: 'dashboard',
+            element: <Dashboard />,
+          },
+        ],
       },
     ],
   },

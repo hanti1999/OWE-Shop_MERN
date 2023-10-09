@@ -1,11 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useContext } from 'react';
-
-import { AuthContext } from '../context/AuthContext';
-import { BASE_URL } from '../utils/config';
-
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, Form, Input } from 'antd';
 import { toast } from 'react-toastify';
+
+import { authActions } from '../redux/slices/authSlice';
+import { BASE_URL } from '../utils/config';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ const Login = () => {
     password: undefined,
   });
 
-  const { dispatch } = useContext(AuthContext);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const Login = () => {
     e.preventDefault();
 
     setLoading(true);
-    dispatch({ type: 'LOGIN_START' });
+    dispatch(authActions.loginStart());
 
     try {
       const res = await fetch(`${BASE_URL}/auth/login`, {
@@ -40,8 +40,9 @@ const Login = () => {
       });
 
       const result = await res.json();
+
       if (res.ok) {
-        dispatch({ type: 'LOGIN_SUCCESS', payload: result.data });
+        dispatch(authActions.loginSuccess(result.data));
         toast.success('Đăng nhập thành công!');
         navigate('/');
       } else {
@@ -50,11 +51,10 @@ const Login = () => {
       setLoading(false);
     } catch (err) {
       toast.error('Tài khoản hoặc mật khẩu sai!');
-      dispatch({ type: 'LOGIN_FAILURE', payload: err.message });
+      dispatch(authActions.loginFailure(err.message));
       setLoading(false);
     }
   };
-
   return (
     <>
       <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>

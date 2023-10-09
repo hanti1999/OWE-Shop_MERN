@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Form, Input } from 'antd';
@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 
 import { cartActions } from '../redux/slices/cartSlice';
 import { BASE_URL } from '../utils/config';
-import { AuthContext } from '../context/AuthContext';
 import '../styles/cart.css';
 
 const Cart = () => {
@@ -110,12 +109,12 @@ const OrderForm = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const user = useSelector((state) => state.auth);
   const validatePhoneNumber = /(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/;
 
   const [order, setOrder] = useState({
-    userId: user?._id,
-    userEmail: user?.email,
+    userId: user?.user._id,
+    userEmail: user?.user.email,
     fullName: undefined,
     phone: undefined,
     address: undefined,

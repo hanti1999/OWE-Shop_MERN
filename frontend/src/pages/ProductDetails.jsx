@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { LoadingOutlined } from '@ant-design/icons';
-import { Rate, Select, Image, Button, Tooltip } from 'antd';
+import { Rate, Select, Image, Button } from 'antd';
 
 import ServiceList from '../services/ServiceList';
 import ProductList from '../shared/ProductList';

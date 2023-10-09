@@ -1,23 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Button, Popconfirm } from 'antd';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { AuthContext } from '../context/AuthContext';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
 import ConvertVie from '../assets/data/ConvertVie';
 
 const Wishlist = () => {
-  const { user } = useContext(AuthContext);
+  const user = useSelector((state) => state.auth);
   const [newLoading, setLoadings] = useState([]);
 
   const {
     data: currentUser,
     loading,
     error,
-  } = useFetch(`${BASE_URL}/users/${user._id}`);
+  } = useFetch(`${BASE_URL}/users/${user.user._id}`);
 
   const { wishlist } = currentUser;
 
