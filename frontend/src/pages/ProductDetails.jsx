@@ -10,13 +10,12 @@ import ProductList from '../shared/ProductList';
 import { cartActions } from '../redux/slices/cartSlice';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
-import { AuthContext } from '../context/AuthContext';
 import '../styles/product-details.css';
 
 const ProductDetails = () => {
   const { id } = useParams();
   const sliceId = id.slice(-24, id.length);
-  const { user } = useContext(AuthContext);
+  const user = useSelector((state) => state.auth.user);
 
   const {
     data: product,
@@ -33,7 +32,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <Details product={product} loading={loading} error={error} user={user} />
+      <Details product={product} loading={loading} error={error} />
       <Related
         relatedProducts={relatedProducts}
         loading={loading}
@@ -44,7 +43,7 @@ const ProductDetails = () => {
   );
 };
 
-const Details = ({ product, loading, error, user }) => {
+const Details = ({ product, loading, error }) => {
   const [selectedSize, setSelectedSize] = useState('');
   const [sizeState, setSizeState] = useState('');
   const dispatch = useDispatch();

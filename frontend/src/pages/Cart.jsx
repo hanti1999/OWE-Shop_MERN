@@ -109,12 +109,12 @@ const OrderForm = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const user = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.auth.user);
   const validatePhoneNumber = /(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/;
 
   const [order, setOrder] = useState({
-    userId: user?.user._id,
-    userEmail: user?.user.email,
+    userId: user?._id,
+    userEmail: user?.email,
     fullName: undefined,
     phone: undefined,
     address: undefined,

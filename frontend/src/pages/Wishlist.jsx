@@ -10,14 +10,14 @@ import { BASE_URL } from '../utils/config';
 import ConvertVie from '../assets/data/ConvertVie';
 
 const Wishlist = () => {
-  const user = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.auth.user);
   const [newLoading, setLoadings] = useState([]);
 
   const {
     data: currentUser,
     loading,
     error,
-  } = useFetch(`${BASE_URL}/users/${user.user._id}`);
+  } = useFetch(`${BASE_URL}/users/${user._id}`);
 
   const { wishlist } = currentUser;
 

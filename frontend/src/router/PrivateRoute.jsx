@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Result } from 'antd';
+import { useSelector } from 'react-redux';
 
-import { AuthContext } from '../context/AuthContext';
 import useFetch from '../hooks/useFetch';
 import { BASE_URL } from '../utils/config';
 
 const PrivateRoute = () => {
-  const { user } = useContext(AuthContext);
+  const user = useSelector((state) => state.auth.user);
 
   const {
     data: currentUser,
@@ -24,7 +24,10 @@ const PrivateRoute = () => {
         </h4>
       )}
 
+      {error && <p>Có lỗi xảy ra!</p>}
+
       {currentUser.role === 'admin' && !loading && <Outlet />}
+
       {currentUser.role != 'admin' && !loading && (
         <Result
           status='403'

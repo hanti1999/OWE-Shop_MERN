@@ -91,7 +91,7 @@ const Header = () => {
   const headerRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.auth.user);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
   const searchToggle = () => {
@@ -184,11 +184,11 @@ const Header = () => {
                 </Badge>
               </button>
 
-              {user.isLoggedIn ? (
+              {user != null ? (
                 <Popover
                   content={
                     <div>
-                      <p>{`Xin chào ${user.user.username}`}</p>
+                      <p>{`Xin chào ${user.username}`}</p>
                       <Link className='block pt-1 pb-2 border-b' to='/wishlist'>
                         Danh sách yêu thích
                       </Link>
@@ -212,7 +212,6 @@ const Header = () => {
                   </Link>
                 </button>
               )}
-              {user.error && <p>Có lỗi xảy ra: {user.error}</p>}
 
               <Dropdown
                 menu={{
