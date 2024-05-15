@@ -1,6 +1,7 @@
 # About
 
 - MERN stack ecommerce website
+- Lưu ý: backend đang deploy tại Render.com, đôi khi sẽ xảy ra tình trạng tải sản phẩm chậm, xin vui lòng chờ trong giây lát
 
 # Run
 
